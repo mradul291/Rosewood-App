@@ -1,12 +1,58 @@
 [
   {
     "doctype": "Custom Field",
+    "name": "Employee-village_name",
+    "dt": "Employee",
+    "fieldname": "village_name",
+    "fieldtype": "Data",
+    "label": "Village Name",
+    "insert_after": "company_email"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-mobile_no_2",
+    "dt": "Employee",
+    "fieldname": "mobile_no_2",
+    "fieldtype": "Data",
+    "label": "Mobile No. 2",
+    "insert_after": "cell_number"
+  },
+  {
+    "doctype": "Custom Field",
     "name": "Employee-aadhar_card_no",
     "dt": "Employee",
     "fieldname": "aadhar_card_no",
     "fieldtype": "Data",
     "label": "Aadhar Card No.",
-    "insert_after": "cell_number",
+    "insert_after": "mobile_no_2",
     "unique": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-full_name_with_village_name",
+    "dt": "Employee",
+    "fieldname": "full_name_with_village_name",
+    "fieldtype": "Data",
+    "label": "Full Name with Village Name",
+    "insert_after": "status",
+    "read_only": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-fathers_name",
+    "dt": "Employee",
+    "fieldname": "fathers_name",
+    "fieldtype": "Data",
+    "label": "Father's Name",
+    "insert_after": "salutation"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-reference_name_for_joining",
+    "dt": "Employee",
+    "fieldname": "reference_name_for_joining",
+    "fieldtype": "Data",
+    "label": "Reference Name for Joining",
+    "insert_after": "family_background"
   }
 ]

@@ -10,6 +10,9 @@ fixtures = [
     {"dt": "Custom Field", "filters": [["module", "=", "Rosewoodapp"]]},
 ]
 
+doctype_js = {
+    "Employee": "public/js/employee.js"
+}
 
 # Apps
 # ------------------
