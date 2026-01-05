@@ -34,8 +34,7 @@
     "fieldname": "full_name_with_village_name",
     "fieldtype": "Data",
     "label": "Full Name with Village Name",
-    "insert_after": "status",
-    "read_only": 1
+    "insert_after": "status"
   },
   {
     "doctype": "Custom Field",
