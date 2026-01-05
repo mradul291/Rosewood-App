@@ -1,0 +1,12 @@
+[
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-aadhar_card_no",
+    "dt": "Employee",
+    "fieldname": "aadhar_card_no",
+    "fieldtype": "Data",
+    "label": "Aadhar Card No.",
+    "insert_after": "cell_number",
+    "unique": 1
+  }
+]

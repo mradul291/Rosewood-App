@@ -5,6 +5,12 @@ app_description = "Rosewood app for Erpnext customization"
 app_email = "chirag.joshi@vigisolvo.com"
 app_license = "mit"
 
+
+fixtures = [
+    {"dt": "Custom Field", "filters": [["module", "=", "Rosewoodapp"]]},
+]
+
+
 # Apps
 # ------------------
 
