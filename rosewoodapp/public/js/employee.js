@@ -223,8 +223,6 @@ function validate_pan(frm) {
 	let pan = frm.doc.pan_number;
 	if (!pan) return;
 
-	if (pan.length < 10) return;
-
 	// Force uppercase
 	pan = pan.toUpperCase();
 	frm.set_value("pan_number", pan);
