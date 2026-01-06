@@ -53,5 +53,58 @@
     "fieldtype": "Data",
     "label": "Reference Name for Joining",
     "insert_after": "family_background"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-spouse_details_section",
+    "dt": "Employee",
+    "fieldname": "spouse_details_section",
+    "fieldtype": "Section Break",
+    "label": "Spouse Details",
+    "insert_after": "full_name_with_village_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-spouse_first_name",
+    "dt": "Employee",
+    "fieldname": "spouse_first_name",
+    "fieldtype": "Data",
+    "label": "Spouse First Name",
+    "insert_after": "spouse_details_section"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-spouse_middle_name",
+    "dt": "Employee",
+    "fieldname": "spouse_middle_name",
+    "fieldtype": "Data",
+    "label": "Spouse Middle Name",
+    "insert_after": "spouse_first_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-spouse_column_break",
+    "dt": "Employee",
+    "fieldname": "spouse_column_break",
+    "fieldtype": "Column Break",
+    "insert_after": "spouse_first_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-spouse_last_name",
+    "dt": "Employee",
+    "fieldname": "spouse_last_name",
+    "fieldtype": "Data",
+    "label": "Spouse Last Name",
+    "insert_after": "spouse_column_break"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-spouse_contact_number",
+    "dt": "Employee",
+    "fieldname": "spouse_contact_number",
+    "fieldtype": "Data",
+    "label": "Spouse Contact Number",
+    "insert_after": "spouse_last_name"
   }
 ]
