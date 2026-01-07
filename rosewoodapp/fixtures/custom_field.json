@@ -106,5 +106,24 @@
     "fieldtype": "Data",
     "label": "Spouse Contact Number",
     "insert_after": "spouse_last_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-alias",
+    "dt": "Employee",
+    "fieldname": "alias",
+    "fieldtype": "Data",
+    "label": "Alias (Nick Name)",
+    "insert_after": "fathers_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-relation_list",
+    "dt": "Employee",
+    "fieldname": "relation_list",
+    "fieldtype": "Link",
+    "label": "Relation",
+    "options": "Relation",
+    "insert_after": "relation"
   }
 ]
