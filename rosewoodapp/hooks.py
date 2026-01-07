@@ -8,6 +8,7 @@ app_license = "mit"
 
 fixtures = [
     {"dt": "Custom Field", "filters": [["module", "=", "Rosewoodapp"]]},
+    {"dt": "Property Setter", "filters": [["module", "=", "Rosewoodapp"]]},
 ]
 
 doctype_js = {

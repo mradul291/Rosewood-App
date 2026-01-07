@@ -1,0 +1,46 @@
+[
+  {
+    "doctype": "Property Setter",
+    "name": "Employee-first_name-not-required",
+    "doctype_or_field": "DocField",
+    "doc_type": "Employee",
+    "field_name": "first_name",
+    "property": "reqd",
+    "property_type": "Check",
+    "value": "0",
+    "module": "Rosewood App"
+  },
+  {
+    "doctype": "Property Setter",
+    "name": "Employee-gender-not-required",
+    "doctype_or_field": "DocField",
+    "doc_type": "Employee",
+    "field_name": "gender",
+    "property": "reqd",
+    "property_type": "Check",
+    "value": "0",
+    "module": "Rosewood App"
+  },
+  {
+    "doctype": "Property Setter",
+    "name": "Employee-date_of_birth-not-required",
+    "doctype_or_field": "DocField",
+    "doc_type": "Employee",
+    "field_name": "date_of_birth",
+    "property": "reqd",
+    "property_type": "Check",
+    "value": "0",
+    "module": "Rosewood App"
+  },
+  {
+    "doctype": "Property Setter",
+    "name": "Employee-date_of_joining-not-required",
+    "doctype_or_field": "DocField",
+    "doc_type": "Employee",
+    "field_name": "date_of_joining",
+    "property": "reqd",
+    "property_type": "Check",
+    "value": "0",
+    "module": "Rosewood App"
+  }
+]
