@@ -129,6 +129,8 @@ frappe.ui.form.on("Employee", {
     validate_mobile_on_save(frm, "cell_number");
     validate_mobile_on_save(frm, "mobile_no_2");
     validate_mobile_on_save(frm, "spouse_contact_number");
+    update_full_name(frm);
+
     // Final PAN check on save
     if (frm.doc.pan_number && frm.doc.pan_number.length !== 10) {
       frappe.throw(__("PAN Number must be exactly 10 characters."));

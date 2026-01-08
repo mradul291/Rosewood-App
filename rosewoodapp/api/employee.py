@@ -67,3 +67,29 @@ def check_unique_employee_field(fieldname, value, current_employee=None):
         }
 
     return {"duplicate": False}
+
+import frappe
+
+def build_full_name_with_village(doc, method=None):
+    """
+    This runs for:
+    - Manual Save
+    - Excel Import
+    - API
+    - Background Jobs
+    """
+
+    def proper(val):
+        if not val:
+            return ""
+        return " ".join(word.capitalize() for word in val.strip().split())
+
+    first = proper(doc.first_name)
+    father = proper(doc.fathers_name.split(" ")[0]) if doc.fathers_name else ""
+    last = proper(doc.last_name)
+    village = proper(doc.village_name)
+
+    parts = [first, father, last, village]
+    parts = [p for p in parts if p]
+
+    doc.full_name_with_village_name = " ".join(parts)

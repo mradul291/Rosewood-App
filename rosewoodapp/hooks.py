@@ -15,6 +15,15 @@ doctype_js = {
     "Employee": "public/js/employee.js"
 }
 
+doc_events = {
+    "Employee": {
+        "validate": [
+            "rosewoodapp.api.employee.build_full_name_with_village"
+        ]
+    }
+}
+
+
 # Apps
 # ------------------
 
