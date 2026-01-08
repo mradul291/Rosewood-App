@@ -11,6 +11,14 @@ frappe.ui.form.on("Employee", {
     update_document_upload_status(frm);
   },
 
+  cv_attachment(frm) {
+    update_document_upload_status(frm);
+  },
+
+  bank_doc_attachment(frm) {
+    update_document_upload_status(frm);
+  },
+
   // ------------------------------
   // MOBILE NUMBER VALIDATION
   // ------------------------------
@@ -368,30 +376,44 @@ function update_document_upload_status(frm) {
   // Aadhaar
   if (frm.doc.aadhar_attachment) {
     frm.fields_dict.aadhar_upload_status.$wrapper.html(
-      `<div style="color: green; font-weight: 500; font-size: 12px;">
-				● Uploaded
-			</div>`
+      `<div style="color: green; font-weight: 500; font-size: 12px;">● Uploaded</div>`
     );
   } else {
     frm.fields_dict.aadhar_upload_status.$wrapper.html(
-      `<div style="color: red; font-weight: 500; font-size: 12px;">
-				● Not Uploaded
-			</div>`
+      `<div style="color: red; font-weight: 500; font-size: 12px;">● Not Uploaded</div>`
     );
   }
 
   // PAN
   if (frm.doc.pan_attachment) {
     frm.fields_dict.pan_upload_status.$wrapper.html(
-      `<div style="color: green; font-weight: 500; font-size: 12px;">
-				● Uploaded
-			</div>`
+      `<div style="color: green; font-weight: 500; font-size: 12px;">● Uploaded</div>`
     );
   } else {
     frm.fields_dict.pan_upload_status.$wrapper.html(
-      `<div style="color: red; font-weight: 500; font-size: 12px;">
-				● Not Uploaded
-			</div>`
+      `<div style="color: red; font-weight: 500; font-size: 12px;">● Not Uploaded</div>`
+    );
+  }
+
+  // CV
+  if (frm.doc.cv_attachment) {
+    frm.fields_dict.cv_upload_status.$wrapper.html(
+      `<div style="color: green; font-weight: 500; font-size: 12px;">● Uploaded</div>`
+    );
+  } else {
+    frm.fields_dict.cv_upload_status.$wrapper.html(
+      `<div style="color: red; font-weight: 500; font-size: 12px;">● Not Uploaded</div>`
+    );
+  }
+
+  // Bank Document (Passbook / Cheque)
+  if (frm.doc.bank_doc_attachment) {
+    frm.fields_dict.bank_doc_upload_status.$wrapper.html(
+      `<div style="color: green; font-weight: 500; font-size: 12px;">● Uploaded</div>`
+    );
+  } else {
+    frm.fields_dict.bank_doc_upload_status.$wrapper.html(
+      `<div style="color: red; font-weight: 500; font-size: 12px;">● Not Uploaded</div>`
     );
   }
 }

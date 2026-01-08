@@ -161,5 +161,41 @@
     "fieldtype": "HTML",
     "label": "PAN Upload Status",
     "insert_after": "pan_attachment"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-cv_attachment",
+    "dt": "Employee",
+    "fieldname": "cv_attachment",
+    "fieldtype": "Attach",
+    "label": "Attach CV",
+    "insert_after": "health_details"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-cv_upload_status",
+    "dt": "Employee",
+    "fieldname": "cv_upload_status",
+    "fieldtype": "HTML",
+    "label": "CV Upload Status",
+    "insert_after": "cv_attachment"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-bank_doc_attachment",
+    "dt": "Employee",
+    "fieldname": "bank_doc_attachment",
+    "fieldtype": "Attach",
+    "label": "Attach Passbook / Cancelled Cheque",
+    "insert_after": "employee_advance_account"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-bank_doc_upload_status",
+    "dt": "Employee",
+    "fieldname": "bank_doc_upload_status",
+    "fieldtype": "HTML",
+    "label": "Bank Document Upload Status",
+    "insert_after": "bank_doc_attachment"
   }
 ]
