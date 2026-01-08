@@ -125,5 +125,41 @@
     "label": "Relation",
     "options": "Relation",
     "insert_after": "relation"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-aadhar_attachment",
+    "dt": "Employee",
+    "fieldname": "aadhar_attachment",
+    "fieldtype": "Attach",
+    "label": "Attach Aadhaar Card",
+    "insert_after": "aadhar_card_no"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-aadhar_upload_status",
+    "dt": "Employee",
+    "fieldname": "aadhar_upload_status",
+    "fieldtype": "HTML",
+    "label": "Aadhaar Upload Status",
+    "insert_after": "aadhar_attachment"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-pan_attachment",
+    "dt": "Employee",
+    "fieldname": "pan_attachment",
+    "fieldtype": "Attach",
+    "label": "Attach PAN Card",
+    "insert_after": "pan_number"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-pan_upload_status",
+    "dt": "Employee",
+    "fieldname": "pan_upload_status",
+    "fieldtype": "HTML",
+    "label": "PAN Upload Status",
+    "insert_after": "pan_attachment"
   }
 ]

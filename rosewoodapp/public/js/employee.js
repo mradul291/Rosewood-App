@@ -1,4 +1,16 @@
 frappe.ui.form.on("Employee", {
+  refresh(frm) {
+    update_document_upload_status(frm);
+  },
+
+  aadhar_attachment(frm) {
+    update_document_upload_status(frm);
+  },
+
+  pan_attachment(frm) {
+    update_document_upload_status(frm);
+  },
+
   // ------------------------------
   // MOBILE NUMBER VALIDATION
   // ------------------------------
@@ -349,5 +361,37 @@ function validate_employee_age(frm) {
       indicator: "red",
     });
     frm.set_value("date_of_birth", "");
+  }
+}
+
+function update_document_upload_status(frm) {
+  // Aadhaar
+  if (frm.doc.aadhar_attachment) {
+    frm.fields_dict.aadhar_upload_status.$wrapper.html(
+      `<div style="color: green; font-weight: 500; font-size: 12px;">
+				● Uploaded
+			</div>`
+    );
+  } else {
+    frm.fields_dict.aadhar_upload_status.$wrapper.html(
+      `<div style="color: red; font-weight: 500; font-size: 12px;">
+				● Not Uploaded
+			</div>`
+    );
+  }
+
+  // PAN
+  if (frm.doc.pan_attachment) {
+    frm.fields_dict.pan_upload_status.$wrapper.html(
+      `<div style="color: green; font-weight: 500; font-size: 12px;">
+				● Uploaded
+			</div>`
+    );
+  } else {
+    frm.fields_dict.pan_upload_status.$wrapper.html(
+      `<div style="color: red; font-weight: 500; font-size: 12px;">
+				● Not Uploaded
+			</div>`
+    );
   }
 }
