@@ -187,7 +187,7 @@
     "fieldname": "bank_doc_attachment",
     "fieldtype": "Attach",
     "label": "Attach Passbook / Cancelled Cheque",
-    "insert_after": "employee_advance_account"
+    "insert_after": "bank_name"
   },
   {
     "doctype": "Custom Field",
