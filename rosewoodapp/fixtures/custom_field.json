@@ -79,7 +79,8 @@
     "fieldname": "spouse_middle_name",
     "fieldtype": "Data",
     "label": "Spouse Middle Name",
-    "insert_after": "spouse_first_name"
+    "insert_after": "spouse_first_name",
+    "hidden": 1
   },
   {
     "doctype": "Custom Field",
@@ -197,5 +198,15 @@
     "fieldtype": "HTML",
     "label": "Bank Document Upload Status",
     "insert_after": "bank_doc_attachment"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-allow_manual_full_name_with_village",
+    "dt": "Employee",
+    "fieldname": "allow_manual_full_name_with_village",
+    "label": "Allow Manually Edit",
+    "fieldtype": "Check",
+    "default": 0,
+    "insert_after": "full_name_with_village_name"
   }
 ]

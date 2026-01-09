@@ -15,6 +15,10 @@ doctype_js = {
     "Employee": "public/js/employee.js"
 }
 
+doctype_list_js = {
+    "Employee": "public/js/employee_list.js"
+}
+
 doc_events = {
     "Employee": {
         "validate": [

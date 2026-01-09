@@ -212,6 +212,9 @@ function validate_mobile_on_save(frm, fieldname) {
 }
 
 function update_full_name(frm) {
+  if (frm.doc.allow_manual_full_name_with_village) {
+    return;
+  }
   const first = proper(frm.doc.first_name);
   const father = proper(first_word(frm.doc.fathers_name));
   const last = proper(frm.doc.last_name);

@@ -68,16 +68,10 @@ def check_unique_employee_field(fieldname, value, current_employee=None):
 
     return {"duplicate": False}
 
-import frappe
-
 def build_full_name_with_village(doc, method=None):
-    """
-    This runs for:
-    - Manual Save
-    - Excel Import
-    - API
-    - Background Jobs
-    """
+    
+    if doc.allow_manual_full_name_with_village:
+        return
 
     def proper(val):
         if not val:
@@ -93,3 +87,45 @@ def build_full_name_with_village(doc, method=None):
     parts = [p for p in parts if p]
 
     doc.full_name_with_village_name = " ".join(parts)
+
+@frappe.whitelist()
+def global_employee_search(search_text):
+    if not search_text:
+        return []
+
+    search_text = f"%{search_text}%"
+
+    fields = [
+        "employee",
+        "first_name",
+        "last_name",
+        "employee_name",
+        "fathers_name",
+        "alias",
+        "full_name_with_village_name",
+        "spouse_first_name",
+        "spouse_last_name",
+        "cell_number",
+        "mobile_no_2",
+        "aadhar_card_no",
+        "personal_email",
+        "company_email",
+        "village_name",
+        "pan_number",
+        "reference_name_for_joining",
+        "current_address",
+        "permanent_address"
+    ]
+
+    conditions = " OR ".join([f"`{field}` LIKE %s" for field in fields])
+    values = [search_text] * len(fields)
+
+    query = f"""
+        SELECT name
+        FROM `tabEmployee`
+        WHERE ({conditions})
+        LIMIT 50
+    """
+
+    data = frappe.db.sql(query, values, as_dict=True)
+    return [d.name for d in data]
