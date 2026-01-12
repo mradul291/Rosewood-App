@@ -42,5 +42,27 @@
     "property_type": "Check",
     "value": "0",
     "module": "Rosewood App"
+  },
+  {
+    "doctype": "Property Setter",
+    "name": "Supplier-supplier_type-hidden",
+    "doctype_or_field": "DocField",
+    "doc_type": "Supplier",
+    "field_name": "supplier_type",
+    "property": "hidden",
+    "property_type": "Check",
+    "value": "1",
+    "module": "Rosewoodapp"
+  },
+  {
+    "doctype": "Property Setter",
+    "name": "Supplier-default_bank_account-hidden",
+    "doctype_or_field": "DocField",
+    "doc_type": "Supplier",
+    "field_name": "default_bank_account",
+    "property": "hidden",
+    "property_type": "Check",
+    "value": "1",
+    "module": "Rosewoodapp"
   }
 ]

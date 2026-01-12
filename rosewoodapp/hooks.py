@@ -12,7 +12,9 @@ fixtures = [
 ]
 
 doctype_js = {
-    "Employee": "public/js/employee.js"
+    "Employee": "public/js/employee.js",
+    "Supplier": "public/js/supplier.js",
+    # "Address": "public/js/address.js"
 }
 
 doctype_list_js = {
@@ -24,6 +26,10 @@ doc_events = {
         "validate": [
             "rosewoodapp.api.employee.build_full_name_with_village"
         ]
+    },
+    "Supplier": {
+        "after_insert": "rosewoodapp.api.supplier.sync_supplier_bank_account",
+        "on_update": "rosewoodapp.api.supplier.sync_supplier_bank_account"
     }
 }
 

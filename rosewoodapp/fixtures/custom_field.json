@@ -42,7 +42,7 @@
     "dt": "Employee",
     "fieldname": "fathers_name",
     "fieldtype": "Data",
-    "label": "Father's Name",
+    "label": "Father's Full Name",
     "insert_after": "salutation"
   },
   {
@@ -208,5 +208,137 @@
     "fieldtype": "Check",
     "default": 0,
     "insert_after": "full_name_with_village_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-supplier_constitution",
+    "dt": "Supplier",
+    "label": "Supplier Type (Constitution of Business)",
+    "fieldname": "supplier_constitution",
+    "fieldtype": "Link",
+    "options": "Supplier Constitution",
+    "insert_after": "supplier_type",
+    "reqd": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-gst_certificate",
+    "dt": "Supplier",
+    "fieldname": "gst_certificate",
+    "fieldtype": "Attach",
+    "label": "GST Certificate",
+    "insert_after": "gstin"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-gst_certificate_upload_status",
+    "dt": "Supplier",
+    "fieldname": "gst_certificate_upload_status",
+    "fieldtype": "HTML",
+    "label": "GST Certificate Upload Status",
+    "insert_after": "gst_certificate"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-pan_document",
+    "dt": "Supplier",
+    "fieldname": "pan_document",
+    "fieldtype": "Attach",
+    "label": "PAN Document",
+    "insert_after": "pan"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-pan_document_upload_status",
+    "dt": "Supplier",
+    "fieldname": "pan_document_upload_status",
+    "fieldtype": "HTML",
+    "label": "PAN Document Upload Status",
+    "insert_after": "pan_document"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-supplier_category",
+    "dt": "Supplier",
+    "fieldname": "supplier_category",
+    "fieldtype": "Select",
+    "label": "Supplier Category",
+    "options": "Supplier\nVendor",
+    "insert_after": "supplier_name",
+    "reqd": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-aadhar_number",
+    "dt": "Supplier",
+    "fieldname": "aadhar_number",
+    "fieldtype": "Data",
+    "label": "Aadhaar Card No.",
+    "insert_after": "tax_withholding_category"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-aadhar_attachment",
+    "dt": "Supplier",
+    "fieldname": "aadhar_attachment",
+    "fieldtype": "Attach",
+    "label": "Aadhaar Card Attachment",
+    "insert_after": "aadhar_number"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-aadhar_upload_status",
+    "dt": "Supplier",
+    "fieldname": "aadhar_upload_status",
+    "fieldtype": "HTML",
+    "label": "Aadhaar Upload Status",
+    "insert_after": "aadhar_attachment"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-bank_name",
+    "dt": "Supplier",
+    "fieldname": "bank_name",
+    "fieldtype": "Data",
+    "label": "Bank Name",
+    "insert_after": "default_currency"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-bank_account_no",
+    "dt": "Supplier",
+    "fieldname": "bank_account_no",
+    "fieldtype": "Data",
+    "label": "Bank A/C No.",
+    "insert_after": "default_price_list"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-alias",
+    "dt": "Supplier",
+    "fieldname": "alias",
+    "fieldtype": "Data",
+    "label": "Alias Name",
+    "insert_after": "supplier_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-owner_name",
+    "dt": "Supplier",
+    "fieldname": "owner_name",
+    "fieldtype": "Data",
+    "label": "Owner Name",
+    "insert_after": "supplier_constitution",
+    "hidden": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-owner_mobile_no",
+    "dt": "Supplier",
+    "fieldname": "owner_mobile_no",
+    "fieldtype": "Data",
+    "label": "Owner Mobile No.",
+    "insert_after": "owner_name",
+    "hidden": 1
   }
 ]
