@@ -64,5 +64,16 @@
     "property_type": "Check",
     "value": "1",
     "module": "Rosewoodapp"
+  },
+  {
+    "doctype": "Property Setter",
+    "name": "Supplier-supplier_primary_address-label",
+    "doctype_or_field": "DocField",
+    "doc_type": "Supplier",
+    "field_name": "supplier_primary_address",
+    "property": "label",
+    "property_type": "Data",
+    "value": "Principal Address",
+    "module": "Rosewoodapp"
   }
 ]

@@ -40,6 +40,14 @@ frappe.ui.form.on("Supplier", {
     toggle_partnership_owner_fields(frm);
   },
 
+  supplier_name(frm) {
+    format_proper_case(frm, "supplier_name");
+  },
+
+  alias(frm) {
+    format_proper_case(frm, "alias");
+  },
+
   validate(frm) {
     if (frm.doc.aadhar_number && frm.doc.aadhar_number.length !== 12) {
       frappe.throw(__("Aadhaar Card Number must be exactly 12 digits."));
@@ -53,9 +61,6 @@ function apply_supplier_document_rules(frm) {
   const is_individual = frm.doc.supplier_constitution === "Individual";
 
   // Mandatory only if NOT Individual
-  frm.set_df_property("gst_certificate", "reqd", !is_individual);
-  frm.set_df_property("pan_document", "reqd", !is_individual);
-
   frm.toggle_display("gst_certificate", !is_individual);
   frm.toggle_display("gst_certificate_upload_status", !is_individual);
   frm.toggle_display("pan_document", !is_individual);
@@ -114,7 +119,64 @@ function toggle_partnership_owner_fields(frm) {
 
   frm.toggle_display("owner_name", is_partnership);
   frm.toggle_display("owner_mobile_no", is_partnership);
-
-  frm.set_df_property("owner_name", "reqd", is_partnership);
-  frm.set_df_property("owner_mobile_no", "reqd", is_partnership);
 }
+
+function proper(value) {
+  if (!value) return "";
+  return value
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+function format_proper_case(frm, fieldname) {
+  const value = frm.doc[fieldname];
+  if (!value) return;
+
+  const formatted = proper(value);
+
+  // Prevent unnecessary set_value loops
+  if (value !== formatted) {
+    frm.set_value(fieldname, formatted);
+  }
+}
+
+// frappe.ui.form.on("Supplier", {
+//   setup(frm) {
+//     frm.set_query("supplier_current_address", function () {
+//       if (!frm.doc.name) return {};
+
+//       return {
+//         filters: {
+//           link_doctype: "Supplier",
+//           link_name: frm.doc.name,
+//         },
+//       };
+//     });
+//   },
+// });
+
+// frappe.ui.form.on("Supplier", {
+//   refresh(frm) {
+//     render_current_address(frm);
+//   },
+
+//   supplier_current_address(frm) {
+//     render_current_address(frm);
+//   },
+// });
+
+// function render_current_address(frm) {
+//   const address = frm.doc.supplier_current_address;
+
+//   if (!address) {
+//     frm.set_value("current_address", "");
+//     return;
+//   }
+
+//   // ERPNext v15 standard method
+//   frappe.utils.get_address_display(address).then((html) => {
+//     frm.set_value("current_address", html || "");
+//   });
+// }

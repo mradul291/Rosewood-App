@@ -217,8 +217,7 @@
     "fieldname": "supplier_constitution",
     "fieldtype": "Link",
     "options": "Supplier Constitution",
-    "insert_after": "supplier_type",
-    "reqd": 1
+    "insert_after": "supplier_type"
   },
   {
     "doctype": "Custom Field",
@@ -264,8 +263,7 @@
     "fieldtype": "Select",
     "label": "Supplier Category",
     "options": "Supplier\nVendor",
-    "insert_after": "supplier_name",
-    "reqd": 1
+    "insert_after": "supplier_name"
   },
   {
     "doctype": "Custom Field",
@@ -340,5 +338,53 @@
     "label": "Owner Mobile No.",
     "insert_after": "owner_name",
     "hidden": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-ifsc_code",
+    "dt": "Supplier",
+    "fieldname": "ifsc_code",
+    "fieldtype": "Data",
+    "label": "IFSC Code",
+    "insert_after": "bank_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-micr_code",
+    "dt": "Supplier",
+    "fieldname": "micr_code",
+    "fieldtype": "Data",
+    "label": "MICR Code",
+    "insert_after": "bank_account_no"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-current_address",
+    "dt": "Supplier",
+    "fieldname": "supplier_current_address",
+    "fieldtype": "Link",
+    "label": "Current Address",
+    "options": "Address",
+    "insert_after": "supplier_primary_address"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-default_address_type",
+    "dt": "Supplier",
+    "fieldname": "default_address_type",
+    "fieldtype": "Select",
+    "label": "Default Address Type",
+    "options": "Principal\nCurrent",
+    "insert_after": "supplier_primary_contact"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-current_address",
+    "dt": "Supplier",
+    "fieldname": "current_address",
+    "fieldtype": "Text",
+    "label": "Current Address",
+    "insert_after": "supplier_current_address",
+    "read_only": 1
   }
 ]

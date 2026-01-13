@@ -14,11 +14,13 @@ fixtures = [
 doctype_js = {
     "Employee": "public/js/employee.js",
     "Supplier": "public/js/supplier.js",
-    # "Address": "public/js/address.js"
+    # "Address": "public/js/address.js",
+    "Contact": "public/js/contact.js",
 }
 
 doctype_list_js = {
-    "Employee": "public/js/employee_list.js"
+    "Employee": "public/js/employee_list.js",
+    "Supplier": "public/js/supplier_list.js"
 }
 
 doc_events = {

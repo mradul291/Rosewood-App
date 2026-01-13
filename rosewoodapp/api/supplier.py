@@ -97,3 +97,38 @@ def get_or_create_bank(bank_name):
     bank_doc.insert(ignore_permissions=True)
 
     return bank_doc.name
+
+@frappe.whitelist()
+def global_supplier_search(search_text):
+    if not search_text:
+        return []
+
+    search_text = f"%{search_text}%"
+
+    fields = [
+        "supplier_name",
+        "alias",
+        "supplier_category",
+        "supplier_constitution",
+        "bank_name",
+        "bank_account_no",
+        "gstin",
+        "pan",
+        "aadhar_number",
+        "supplier_primary_address",
+        "supplier_primary_contact",
+        "mobile_no",
+    ]
+
+    conditions = " OR ".join([f"`{field}` LIKE %s" for field in fields])
+    values = [search_text] * len(fields)
+
+    query = f"""
+        SELECT name
+        FROM `tabSupplier`
+        WHERE ({conditions})
+        LIMIT 50
+    """
+
+    data = frappe.db.sql(query, values, as_dict=True)
+    return [d.name for d in data]
