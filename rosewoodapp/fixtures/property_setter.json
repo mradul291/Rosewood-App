@@ -86,5 +86,16 @@
     "property_type": "Data",
     "value": "Principal Address Detail",
     "module": "Rosewoodapp"
+  },
+  {
+    "doctype": "Property Setter",
+    "name": "Address-county-hidden",
+    "doctype_or_field": "DocField",
+    "doc_type": "Address",
+    "field_name": "county",
+    "property": "hidden",
+    "property_type": "Check",
+    "value": "1",
+    "module": "Rosewoodapp"
   }
 ]

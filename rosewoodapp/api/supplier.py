@@ -119,6 +119,11 @@ def global_supplier_search(search_text):
         "supplier_primary_address",
         "supplier_primary_contact",
         "mobile_no",
+        "mobile_number",
+        "owner_name",
+        "owner_mobile_no",
+        "primary_address",
+        "current_address_text",
     ]
 
     conditions = " OR ".join([f"`{field}` LIKE %s" for field in fields])
