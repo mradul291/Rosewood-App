@@ -359,13 +359,23 @@
   },
   {
     "doctype": "Custom Field",
-    "name": "Supplier-current_address",
+    "name": "Supplier-supplier_current_address",
     "dt": "Supplier",
     "fieldname": "supplier_current_address",
     "fieldtype": "Link",
     "label": "Current Address",
     "options": "Address",
-    "insert_after": "supplier_primary_address"
+    "insert_after": "primary_address"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-current_address_display",
+    "dt": "Supplier",
+    "fieldname": "current_address_text",
+    "fieldtype": "Text",
+    "label": "Current Address Detail",
+    "insert_after": "supplier_current_address",
+    "read_only": 1
   },
   {
     "doctype": "Custom Field",
@@ -379,12 +389,11 @@
   },
   {
     "doctype": "Custom Field",
-    "name": "Supplier-current_address",
+    "name": "Supplier-mobile_number",
     "dt": "Supplier",
-    "fieldname": "current_address",
-    "fieldtype": "Text",
-    "label": "Current Address",
-    "insert_after": "supplier_current_address",
-    "read_only": 1
+    "fieldname": "mobile_number",
+    "fieldtype": "Data",
+    "label": "Mobile Number",
+    "insert_after": "is_transporter"
   }
 ]

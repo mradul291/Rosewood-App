@@ -48,9 +48,26 @@ frappe.ui.form.on("Supplier", {
     format_proper_case(frm, "alias");
   },
 
+  mobile_number(frm) {
+    validate_mobile(frm, "mobile_number");
+    check_duplicate_mobile(frm, "mobile_number");
+  },
+
   validate(frm) {
+    // Aadhar Validation
     if (frm.doc.aadhar_number && frm.doc.aadhar_number.length !== 12) {
       frappe.throw(__("Aadhaar Card Number must be exactly 12 digits."));
+    }
+
+    // Mobile Number validation (NEW)
+    if (frm.doc.mobile_number) {
+      if (!/^\d+$/.test(frm.doc.mobile_number)) {
+        frappe.throw(__("Mobile number must contain digits only."));
+      }
+
+      if (frm.doc.mobile_number.length !== 10) {
+        frappe.throw(__("Mobile number must be exactly 10 digits."));
+      }
     }
   },
 });
@@ -142,41 +159,85 @@ function format_proper_case(frm, fieldname) {
   }
 }
 
-// frappe.ui.form.on("Supplier", {
-//   setup(frm) {
-//     frm.set_query("supplier_current_address", function () {
-//       if (!frm.doc.name) return {};
+function check_duplicate_mobile(frm, fieldname) {
+  const mobile = frm.doc[fieldname];
+  if (!mobile || mobile.length !== 10) return;
 
-//       return {
-//         filters: {
-//           link_doctype: "Supplier",
-//           link_name: frm.doc.name,
-//         },
-//       };
-//     });
-//   },
-// });
+  frappe.call({
+    method: "rosewoodapp.api.supplier.check_duplicate_mobile",
+    args: {
+      mobile: mobile,
+      current_supplier: frm.doc.name,
+    },
+    callback: function (r) {
+      if (!r.message || !r.message.duplicate) return;
 
-// frappe.ui.form.on("Supplier", {
-//   refresh(frm) {
-//     render_current_address(frm);
-//   },
+      const sup = r.message.supplier;
 
-//   supplier_current_address(frm) {
-//     render_current_address(frm);
-//   },
-// });
+      frappe.confirm(
+        __(
+          `This Mobile Number is already used by Supplier:<br><br>
+          <b>${sup.supplier_name}</b> (${sup.name})<br><br>
+          Do you want to allow duplicate entry?`
+        ),
+        () => {
+          // User allowed duplicate → do nothing
+        },
+        () => {
+          // User rejected → clear field
+          frm.set_value(fieldname, "");
+        }
+      );
+    },
+  });
+}
 
-// function render_current_address(frm) {
-//   const address = frm.doc.supplier_current_address;
+function validate_mobile(frm, fieldname) {
+  const val = frm.doc[fieldname];
+  if (!val) return;
 
-//   if (!address) {
-//     frm.set_value("current_address", "");
-//     return;
-//   }
+  if (!/^\d+$/.test(val)) {
+    frappe.msgprint(__("Mobile number must contain digits only."));
+    frm.set_value(fieldname, "");
+    return;
+  }
 
-//   // ERPNext v15 standard method
-//   frappe.utils.get_address_display(address).then((html) => {
-//     frm.set_value("current_address", html || "");
-//   });
-// }
+  if (val.length > 10) {
+    frappe.msgprint(__("Mobile number must be exactly 10 digits."));
+    frm.set_value(fieldname, "");
+  }
+}
+
+frappe.ui.form.on("Supplier", {
+  setup(frm) {
+    frm.set_query("supplier_current_address", function (doc) {
+      return {
+        query: "erpnext.buying.doctype.supplier.supplier.get_supplier_primary",
+        filters: {
+          supplier: doc.name,
+          type: "Address",
+        },
+      };
+    });
+  },
+});
+
+frappe.ui.form.on("Supplier", {
+  supplier_current_address(frm) {
+    if (frm.doc.supplier_current_address) {
+      frappe.call({
+        method: "frappe.contacts.doctype.address.address.get_address_display",
+        args: {
+          address_dict: frm.doc.supplier_current_address,
+        },
+        callback: function (r) {
+          frm.set_value("current_address_text", r.message);
+        },
+      });
+    }
+
+    if (!frm.doc.supplier_current_address) {
+      frm.set_value("current_address_text", "");
+    }
+  },
+});

@@ -2,40 +2,34 @@ frappe.ui.form.on("Address", {
   pincode(frm) {
     const pin = frm.doc.pincode;
 
-    if (!pin || pin.length !== 6) return;
+    if (!pin || !/^\d{6}$/.test(pin)) return;
 
-    if (!/^\d{6}$/.test(pin)) {
-      frappe.msgprint(__("PIN Code must be exactly 6 digits."));
-      return;
-    }
+    console.log("Fetching PIN from browser:", pin);
 
-    // Optional: Add loading indicator
-    frm.dashboard.show_loading();
+    fetch(`https://api.postalpincode.in/pincode/${pin}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Browser API Response:", data);
 
-    frappe.call({
-      method: "rosewoodapp.api.address.get_location_from_pincode",
-      args: { pincode: pin },
-      callback(r) {
-        frm.dashboard.clear_comment(); // Clear loading
+        if (
+          data &&
+          data[0] &&
+          data[0].Status === "Success" &&
+          data[0].PostOffice &&
+          data[0].PostOffice.length
+        ) {
+          const po = data[0].PostOffice[0];
 
-        if (r.message) {
-          frm.set_value("city", r.message.city);
-          frm.set_value("state", r.message.state);
-          frm.set_value("country", r.message.country);
-          frappe.msgprint(__("Location updated successfully!"));
+          frm.set_value("city", po.District);
+          frm.set_value("state", po.State);
+          frm.set_value("country", po.Country || "India");
         } else {
-          frappe.msgprint(
-            __("Invalid PIN Code or location not found. Check server logs.")
-          );
+          frappe.msgprint(__("Invalid PIN Code"));
         }
-      },
-      error(r) {
-        frappe.dashboard.clear_comment();
-        frappe.msgprint(
-          __("API call failed. Check browser console and server logs.")
-        );
-        console.error("PIN API Error:", r);
-      },
-    });
+      })
+      .catch((err) => {
+        console.error("Browser PIN API failed:", err);
+        frappe.msgprint(__("Unable to reach PIN Code service"));
+      });
   },
 });

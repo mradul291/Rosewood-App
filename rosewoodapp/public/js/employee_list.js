@@ -1,44 +1,60 @@
 frappe.listview_settings["Employee"] = {
-	onload(listview) {
-		// Create raw input (NOT a Frappe field)
-		const $search = $(`
+  onload(listview) {
+    // Create raw input (NOT a Frappe field)
+    const $search = $(`
       <input type="text"
         class="form-control"
         placeholder="Search employees by any detail...">
     `);
 
-		// Attach to page
-		listview.page.page_form.append($search);
+    // Attach to page
+    listview.page.page_form.append($search);
 
-		let debounce_timer = null;
+    // ---------------------------------------
+    // ALT + G Shortcut → Focus Search Input
+    // ---------------------------------------
+    $(document).on("keydown", function (e) {
+      if (
+        e.altKey &&
+        !e.ctrlKey &&
+        !e.shiftKey &&
+        e.key.toLowerCase() === "g"
+      ) {
+        e.preventDefault();
+        e.stopPropagation();
+        $search.focus();
+      }
+    });
 
-		$search.on("input", function () {
-			const value = $(this).val();
+    let debounce_timer = null;
 
-			clearTimeout(debounce_timer);
+    $search.on("input", function () {
+      const value = $(this).val();
 
-			debounce_timer = setTimeout(() => {
-				// Clear filter if empty
-				if (!value) {
-					listview.filter_area.clear();
-					listview.refresh();
-					return;
-				}
+      clearTimeout(debounce_timer);
 
-				frappe.call({
-					method: "rosewoodapp.api.employee.global_employee_search",
-					args: { search_text: value },
-					callback(r) {
-						listview.filter_area.clear();
+      debounce_timer = setTimeout(() => {
+        // Clear filter if empty
+        if (!value) {
+          listview.filter_area.clear();
+          listview.refresh();
+          return;
+        }
 
-						if (r.message && r.message.length) {
-							listview.filter_area.add([["Employee", "name", "in", r.message]]);
-						}
+        frappe.call({
+          method: "rosewoodapp.api.employee.global_employee_search",
+          args: { search_text: value },
+          callback(r) {
+            listview.filter_area.clear();
 
-						listview.refresh();
-					},
-				});
-			}, 400);
-		});
-	},
+            if (r.message && r.message.length) {
+              listview.filter_area.add([["Employee", "name", "in", r.message]]);
+            }
+
+            listview.refresh();
+          },
+        });
+      }, 400);
+    });
+  },
 };

@@ -47,7 +47,7 @@ frappe.listview_settings["Supplier"] = {
     // CTRL + SHIFT + G Shortcut → Focus Search Input
     // ---------------------------------------
     $(document).on("keydown", function (e) {
-      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "g") {
+      if (e.altKey && e.key.toLowerCase() === "g") {
         e.preventDefault();
         e.stopPropagation();
         $search.focus();
