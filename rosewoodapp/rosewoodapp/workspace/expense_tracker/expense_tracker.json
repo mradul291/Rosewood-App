@@ -1,0 +1,66 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"GfRIjzFLdr\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Expense Tracker</span>\",\"col\":12}},{\"id\":\"YyIMNy5Hzq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Entry\",\"col\":3}},{\"id\":\"OaX-D9MHh_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Category\",\"col\":3}},{\"id\":\"TqrhRqS3T_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Person\",\"col\":3}},{\"id\":\"6dWdpeMgAK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Site\",\"col\":3}}]",
+ "creation": "2026-01-15 12:04:34.066497",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "expenses",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Expense Tracker",
+ "links": [],
+ "modified": "2026-01-15 12:55:38.240203",
+ "modified_by": "Administrator",
+ "module": "Rosewoodapp",
+ "name": "Expense Tracker",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Expense"
+  }
+ ],
+ "sequence_id": 28.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Expense Entry",
+   "link_to": "Expense Entry",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Expense Category",
+   "link_to": "Expense Category",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Expense Person",
+   "link_to": "Expense Person",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Site",
+   "link_to": "Site",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Expense Tracker"
+}
