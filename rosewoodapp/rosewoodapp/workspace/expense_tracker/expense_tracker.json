@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"GfRIjzFLdr\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Expense Tracker</span>\",\"col\":12}},{\"id\":\"YyIMNy5Hzq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Entry\",\"col\":3}},{\"id\":\"OaX-D9MHh_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Category\",\"col\":3}},{\"id\":\"TqrhRqS3T_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Person\",\"col\":3}},{\"id\":\"6dWdpeMgAK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Site\",\"col\":3}}]",
+ "content": "[{\"id\":\"GfRIjzFLdr\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Expense Tracker</span>\",\"col\":12}},{\"id\":\"YyIMNy5Hzq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Entry\",\"col\":3}},{\"id\":\"OaX-D9MHh_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Category\",\"col\":3}},{\"id\":\"6dWdpeMgAK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Site\",\"col\":3}},{\"id\":\"bVEcbC_pa1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports</b></span>\",\"col\":12}},{\"id\":\"RETYdUqcTm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Entry \u2013 User Wise\",\"col\":3}},{\"id\":\"LB9wSLhrxP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Entry \u2013 Sitewise\",\"col\":3}},{\"id\":\"o477CEgXtS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Summary \u2013 Category Wise\",\"col\":3}}]",
  "creation": "2026-01-15 12:04:34.066497",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Expense Tracker",
  "links": [],
- "modified": "2026-01-15 12:55:38.240203",
+ "modified": "2026-01-16 13:32:26.337689",
  "modified_by": "Administrator",
  "module": "Rosewoodapp",
  "name": "Expense Tracker",
@@ -32,10 +32,26 @@
   {
    "color": "Grey",
    "doc_view": "List",
+   "label": "Expense Entry \u2013 User Wise",
+   "link_to": "Expense Entry \u2013 User Wise",
+   "report_ref_doctype": "Expense Entry",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
    "label": "Expense Entry",
    "link_to": "Expense Entry",
    "stats_filter": "[]",
    "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Expense Entry \u2013 Sitewise",
+   "link_to": "Expense Entry \u2013 Sitewise",
+   "report_ref_doctype": "Expense Entry",
+   "type": "Report"
   },
   {
    "color": "Grey",
@@ -48,10 +64,10 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Expense Person",
-   "link_to": "Expense Person",
-   "stats_filter": "[]",
-   "type": "DocType"
+   "label": "Expense Summary \u2013 Category Wise",
+   "link_to": "Expense Summary \u2013 Category Wise",
+   "report_ref_doctype": "Expense Entry",
+   "type": "Report"
   },
   {
    "color": "Grey",

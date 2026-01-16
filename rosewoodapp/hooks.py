@@ -35,7 +35,6 @@ doc_events = {
     }
 }
 
-
 permission_query_conditions = {
     "Expense Entry": "rosewoodapp.permissions.permission.expense_entry_permission_query"
 }

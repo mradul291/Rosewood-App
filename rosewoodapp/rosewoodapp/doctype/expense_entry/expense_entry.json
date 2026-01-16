@@ -16,18 +16,19 @@
   "expense_category",
   "column_break_gmem",
   "payment_mode",
+  "site",
   "amounts_section",
   "cash_in",
   "cash_out",
   "column_break_afwp",
   "balance",
+  "add_attachment",
   "context_section",
-  "site",
   "description",
   "ownership_section",
   "entry_by",
   "column_break_adud",
-  "expense_person"
+  "entry_person"
  ],
  "fields": [
   {
@@ -132,23 +133,29 @@
    "fieldname": "entry_by",
    "fieldtype": "Link",
    "label": "Entry By",
-   "options": "User"
+   "options": "User",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_adud",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "expense_person",
-   "fieldtype": "Link",
-   "label": "Person",
-   "options": "Expense Person"
+   "fieldname": "add_attachment",
+   "fieldtype": "Attach",
+   "label": "Add Attachment "
+  },
+  {
+   "fetch_from": "entry_by.full_name",
+   "fieldname": "entry_person",
+   "fieldtype": "Data",
+   "label": "Entry Person"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-01-15 12:00:15.026809",
+ "modified": "2026-01-16 11:33:03.669609",
  "modified_by": "Administrator",
  "module": "Rosewoodapp",
  "name": "Expense Entry",
@@ -172,5 +179,6 @@
  "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }

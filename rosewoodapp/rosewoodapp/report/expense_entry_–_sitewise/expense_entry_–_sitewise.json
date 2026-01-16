@@ -1,0 +1,86 @@
+{
+ "add_total_row": 1,
+ "add_translate_data": 0,
+ "columns": [
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "width": 150
+  },
+  {
+   "fieldname": "entry_type",
+   "fieldtype": "Data",
+   "label": "Type",
+   "width": 150
+  },
+  {
+   "fieldname": "expense_category",
+   "fieldtype": "Link",
+   "label": "Category",
+   "options": "Expense Category",
+   "width": 200
+  },
+  {
+   "fieldname": "payment_mode",
+   "fieldtype": "Data",
+   "label": "Mode",
+   "width": 150
+  },
+  {
+   "fieldname": "cash_in",
+   "fieldtype": "Currency",
+   "label": "Cash In",
+   "width": 180
+  },
+  {
+   "fieldname": "cash_out",
+   "fieldtype": "Currency",
+   "label": "Cash Out",
+   "width": 180
+  },
+  {
+   "fieldname": "balance",
+   "fieldtype": "Currency",
+   "label": "Balance",
+   "width": 180
+  }
+ ],
+ "creation": "2026-01-16 12:48:33.773096",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "default": "Pune Industrial Site",
+   "fieldname": "site",
+   "fieldtype": "Link",
+   "label": "Site",
+   "mandatory": 0,
+   "options": "Site",
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-01-16 13:33:35.893616",
+ "modified_by": "Administrator",
+ "module": "Rosewoodapp",
+ "name": "Expense Entry \u2013 Sitewise",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT \n  posting_date,\n  entry_type,\n  expense_category,\n  payment_mode,\n  IFNULL(cash_in, 0) as cash_in,\n  IFNULL(cash_out, 0) as cash_out,\n  IFNULL(balance, 0) as balance\nFROM `tabExpense Entry`\nWHERE 1=1\n  AND (site IS NULL OR site = %(site)s)\nORDER BY posting_date DESC\n",
+ "ref_doctype": "Expense Entry",
+ "report_name": "Expense Entry \u2013 Sitewise",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Expense"
+  }
+ ],
+ "timeout": 0
+}
