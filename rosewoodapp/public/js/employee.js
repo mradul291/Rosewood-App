@@ -204,9 +204,9 @@ function validate_mobile_on_save(frm, fieldname) {
       __(
         `${frappe.meta.get_label(
           "Employee",
-          fieldname
-        )} must be exactly 10 digits.`
-      )
+          fieldname,
+        )} must be exactly 10 digits.`,
+      ),
     );
   }
 }
@@ -270,7 +270,7 @@ function check_duplicate_mobile(frm, fieldname) {
         __(
           `This Mobile Number is already used by Employee:<br><br>
 					<b>${emp.employee_name}</b> (${emp.name})<br><br>
-					Do you want to allow duplicate entry?`
+					Do you want to allow duplicate entry?`,
         ),
         () => {
           // User approved → do nothing
@@ -278,7 +278,7 @@ function check_duplicate_mobile(frm, fieldname) {
         () => {
           // User rejected → clear field
           frm.set_value(fieldname, "");
-        }
+        },
       );
     },
   });
@@ -339,10 +339,10 @@ function check_unique_employee_field(frm, fieldname) {
         __(
           `${frappe.meta.get_label(
             "Employee",
-            fieldname
+            fieldname,
           )} already exists for:<br><br>
-					<b>${emp.employee_name}</b> (${emp.name})`
-        )
+					<b>${emp.employee_name}</b> (${emp.name})`,
+        ),
       );
 
       frm.set_value(fieldname, "");
@@ -379,44 +379,149 @@ function update_document_upload_status(frm) {
   // Aadhaar
   if (frm.doc.aadhar_attachment) {
     frm.fields_dict.aadhar_upload_status.$wrapper.html(
-      `<div style="color: green; font-weight: 500; font-size: 12px;">● Uploaded</div>`
+      `<div style="color: green; font-weight: 500; font-size: 12px;">● Uploaded</div>`,
     );
   } else {
     frm.fields_dict.aadhar_upload_status.$wrapper.html(
-      `<div style="color: red; font-weight: 500; font-size: 12px;">● Not Uploaded</div>`
+      `<div style="color: red; font-weight: 500; font-size: 12px;">● Not Uploaded</div>`,
     );
   }
 
   // PAN
   if (frm.doc.pan_attachment) {
     frm.fields_dict.pan_upload_status.$wrapper.html(
-      `<div style="color: green; font-weight: 500; font-size: 12px;">● Uploaded</div>`
+      `<div style="color: green; font-weight: 500; font-size: 12px;">● Uploaded</div>`,
     );
   } else {
     frm.fields_dict.pan_upload_status.$wrapper.html(
-      `<div style="color: red; font-weight: 500; font-size: 12px;">● Not Uploaded</div>`
+      `<div style="color: red; font-weight: 500; font-size: 12px;">● Not Uploaded</div>`,
     );
   }
 
   // CV
   if (frm.doc.cv_attachment) {
     frm.fields_dict.cv_upload_status.$wrapper.html(
-      `<div style="color: green; font-weight: 500; font-size: 12px;">● Uploaded</div>`
+      `<div style="color: green; font-weight: 500; font-size: 12px;">● Uploaded</div>`,
     );
   } else {
     frm.fields_dict.cv_upload_status.$wrapper.html(
-      `<div style="color: red; font-weight: 500; font-size: 12px;">● Not Uploaded</div>`
+      `<div style="color: red; font-weight: 500; font-size: 12px;">● Not Uploaded</div>`,
     );
   }
 
   // Bank Document (Passbook / Cheque)
   if (frm.doc.bank_doc_attachment) {
     frm.fields_dict.bank_doc_upload_status.$wrapper.html(
-      `<div style="color: green; font-weight: 500; font-size: 12px;">● Uploaded</div>`
+      `<div style="color: green; font-weight: 500; font-size: 12px;">● Uploaded</div>`,
     );
   } else {
     frm.fields_dict.bank_doc_upload_status.$wrapper.html(
-      `<div style="color: red; font-weight: 500; font-size: 12px;">● Not Uploaded</div>`
+      `<div style="color: red; font-weight: 500; font-size: 12px;">● Not Uploaded</div>`,
     );
   }
 }
+
+frappe.ui.form.on("Employee", {
+  ifsc_code(frm) {
+    const ifsc = frm.doc.ifsc_code;
+
+    if (!ifsc || !/^[A-Z]{4}0[A-Z0-9]{6}$/i.test(ifsc)) return;
+
+    frappe.call({
+      method: "rosewoodapp.api.employee.fetch_ifsc_details",
+      args: {
+        ifsc_code: ifsc,
+      },
+      callback(r) {
+        if (!r.message) return;
+
+        frm.set_value("bank_name", r.message.bank_name || "");
+        frm.set_value("branch_name", r.message.branch_name || "");
+        frm.set_value("branch_address", r.message.branch_address || "");
+        frm.set_value("micr_code", r.message.micr_code || "");
+      },
+    });
+  },
+});
+
+frappe.ui.form.on("Employee", {
+  bank_name(frm) {
+    if (frm.doc.bank_name) {
+      frm.set_value("bank_name", frm.doc.bank_name.toUpperCase());
+    }
+  },
+});
+
+const BANK_ACCOUNT_RULES = {
+  "AMANA BANK": [13],
+  "AXIS BANK": [12],
+  "BANK OF CEYLON": [10],
+  "BIMPUTH FINANCE PLC": [14, 15],
+  "CARGILLS BANK": [12],
+  CDB: [18],
+  "CENTRAL FINANCE": [12],
+  CITIBANK: [10],
+  CLC: [11],
+  "COMMERCIAL BANK": [10],
+  "DEUTSCHE BANK": [10],
+  "DFCC BANK": [12],
+  "HABIB BANK": [13],
+  "HATTON NATIONAL BANK": [12],
+  "HDFC BANK": [12],
+  "HNB FINANCE LIMITED": [12],
+  HSBC: [12],
+  "ICICI BANK": [12],
+  "INDIAN BANK": [12],
+  "INDIAN OVERSEAS BANK": [12],
+  "LB FINANCE": [15],
+  LOFC: [11],
+  "LOLC DEVELOPMENT FINANCE PLC": [11],
+  "MCB BANK": [12],
+  "NATIONAL DEVELOPMENT BANK": [12],
+  "NATIONS TRUST BANK": [12],
+  NSB: [12],
+  PABC: [12],
+  "PEOPLE'S BANK": [15],
+  "PUBLIC BANK": [13],
+  "REGIONAL DEVELOPMENT BANK": [12],
+  "SAMPATH BANK": [12],
+  "SDB BANK": [10],
+  "SENKADAGALA FINANCE": [12],
+  "SEYLAN BANK": [15],
+  "STANDARD CHARTERED BANK": [11, 12],
+  "STATE BANK OF INDIA": [14],
+  "UNION BANK": [16],
+};
+
+frappe.ui.form.on("Employee", {
+  validate(frm) {
+    const bank = frm.doc.bank_name;
+    let ac_no = frm.doc.bank_ac_no;
+
+    if (!bank || !ac_no) return;
+
+    // Normalize input (do NOT block typing)
+    ac_no = ac_no.replace(/[\s-]/g, "");
+    frm.doc.bank_ac_no = ac_no;
+
+    // Digits-only check
+    if (!/^\d+$/.test(ac_no)) {
+      frappe.throw(__("Bank Account Number must contain digits only."));
+    }
+
+    const rules = BANK_ACCOUNT_RULES[bank.toUpperCase()];
+
+    // If bank not configured, allow save
+    if (!rules) return;
+
+    if (!rules.includes(ac_no.length)) {
+      frappe.throw(
+        __(
+          `Invalid Bank Account Number length for ${bank}. Allowed length(s): ${rules.join(
+            ", ",
+          )} digits.`,
+        ),
+      );
+    }
+  },
+});

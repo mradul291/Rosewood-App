@@ -1,3 +1,6 @@
+// -------------------------------
+// Default values on load
+// -------------------------------
 frappe.ui.form.on("Expense Entry", {
 	onload(frm) {
 		if (!frm.doc.posting_date) {
@@ -14,12 +17,14 @@ frappe.ui.form.on("Expense Entry", {
 	},
 });
 
+// -------------------------------
+// Entry Type control logic
+// -------------------------------
 frappe.ui.form.on("Expense Entry", {
 	entry_type(frm) {
 		frm.set_value("cash_in", 0);
 		frm.set_value("cash_out", 0);
 		frm.set_value("expense_category", null);
-		frm.set_value("expense_person", null);
 
 		if (frm.doc.entry_type === "Opening Balance" || frm.doc.entry_type === "Inward") {
 			frm.set_df_property("cash_in", "read_only", 0);
@@ -35,6 +40,9 @@ frappe.ui.form.on("Expense Entry", {
 	},
 });
 
+// -------------------------------
+// Category filter by Entry Type
+// -------------------------------
 function apply_category_filter(frm) {
 	frm.set_query("expense_category", function () {
 		return {
@@ -46,44 +54,9 @@ function apply_category_filter(frm) {
 	});
 }
 
-frappe.ui.form.on("Expense Entry", {
-	expense_category(frm) {
-		if (!frm.doc.expense_category) {
-			frm.toggle_display("expense_person", false);
-			frm.set_value("expense_person", null);
-			return;
-		}
-
-		frappe.db.get_value(
-			"Expense Category",
-			frm.doc.expense_category,
-			"requires_person",
-			(r) => {
-				if (r && r.requires_person) {
-					frm.toggle_display("expense_person", true);
-					frm.set_df_property("expense_person", "reqd", 1);
-				} else {
-					frm.toggle_display("expense_person", false);
-					frm.set_df_property("expense_person", "reqd", 0);
-					frm.set_value("expense_person", null);
-				}
-			}
-		);
-	},
-});
-
-frappe.ui.form.on("Expense Entry", {
-	setup(frm) {
-		frm.set_query("expense_person", function () {
-			return {
-				filters: {
-					is_active: 1,
-				},
-			};
-		});
-	},
-});
-
+// -------------------------------
+// Validation rules
+// -------------------------------
 frappe.ui.form.on("Expense Entry", {
 	validate(frm) {
 		if (frm.doc.entry_type === "Outward" && frm.doc.cash_in > 0) {
@@ -103,6 +76,9 @@ frappe.ui.form.on("Expense Entry", {
 	},
 });
 
+// -------------------------------
+// Auto balance calculation
+// -------------------------------
 frappe.ui.form.on("Expense Entry", {
 	before_save(frm) {
 		return frappe.db
@@ -115,11 +91,15 @@ frappe.ui.form.on("Expense Entry", {
 				let previous_balance = res.length ? res[0].balance : 0;
 				let current_balance =
 					previous_balance + (frm.doc.cash_in || 0) - (frm.doc.cash_out || 0);
+
 				frm.set_value("balance", current_balance);
 			});
 	},
 });
 
+// -------------------------------
+// Opening Balance allowed only once
+// -------------------------------
 frappe.ui.form.on("Expense Entry", {
 	validate(frm) {
 		if (frm.doc.entry_type === "Opening Balance" && frm.is_new()) {
@@ -136,9 +116,11 @@ frappe.ui.form.on("Expense Entry", {
 	},
 });
 
+// -------------------------------
+// UI polish
+// -------------------------------
 frappe.ui.form.on("Expense Entry", {
 	refresh(frm) {
 		frm.set_df_property("balance", "read_only", 1);
-		frm.toggle_display("expense_person", false);
 	},
 });

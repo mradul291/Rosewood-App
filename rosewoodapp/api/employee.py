@@ -1,3 +1,4 @@
+import requests
 import frappe
 
 @frappe.whitelist()
@@ -129,3 +130,48 @@ def global_employee_search(search_text):
 
     data = frappe.db.sql(query, values, as_dict=True)
     return [d.name for d in data]
+
+@frappe.whitelist()
+def fetch_ifsc_details(ifsc_code):
+    if not ifsc_code:
+        return {}
+
+    url = f"https://ifsc.razorpay.com/{ifsc_code}"
+
+    try:
+        response = requests.get(url, timeout=10)
+
+        # Razorpay returns 404 for invalid IFSC
+        if response.status_code != 200:
+            frappe.throw("Invalid IFSC Code")
+
+        data = response.json()
+
+        # Build a clean, readable address
+        address_parts = [
+            data.get("BRANCH"),
+            data.get("ADDRESS"),
+            data.get("CITY") or data.get("DISTRICT"),
+            data.get("STATE"),
+            "India"
+        ]
+
+        # Remove empty values and duplicates while preserving order
+        clean_address = []
+        for part in address_parts:
+            if part and part not in clean_address:
+                clean_address.append(part.strip())
+
+        return {
+            "bank_name": data.get("BANK"),
+            "branch_name": data.get("BRANCH"),
+            "branch_address": ", ".join(clean_address),
+            "micr_code": data.get("MICR")
+        }
+
+    except frappe.ValidationError:
+        raise
+
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "IFSC Fetch Failed")
+        frappe.throw("Unable to fetch bank details")

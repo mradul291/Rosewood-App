@@ -211,6 +211,24 @@
   },
   {
     "doctype": "Custom Field",
+    "name": "Employee-branch_name",
+    "dt": "Employee",
+    "fieldname": "branch_name",
+    "fieldtype": "Data",
+    "label": "Branch Name",
+    "insert_after": "bank_ac_no"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-branch_address",
+    "dt": "Employee",
+    "fieldname": "branch_address",
+    "fieldtype": "Small Text",
+    "label": "Branch Address",
+    "insert_after": "bank_name"
+  },
+  {
+    "doctype": "Custom Field",
     "name": "Supplier-supplier_constitution",
     "dt": "Supplier",
     "label": "Supplier Type (Constitution of Business)",

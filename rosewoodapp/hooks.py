@@ -20,7 +20,8 @@ doctype_js = {
 
 doctype_list_js = {
     "Employee": "public/js/employee_list.js",
-    "Supplier": "public/js/supplier_list.js"
+    "Supplier": "public/js/supplier_list.js",
+    "Expense Entry": "public/js/expense_entry_list.js"
 }
 
 doc_events = {
