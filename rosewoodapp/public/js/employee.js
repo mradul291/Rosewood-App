@@ -144,6 +144,18 @@ frappe.ui.form.on("Employee", {
     format_proper_case(frm, "alias");
   },
 
+  bank_name(frm) {
+    format_proper_case(frm, "bank_name");
+  },
+
+  branch_name(frm) {
+    format_proper_case(frm, "branch_name");
+  },
+
+  branch_address(frm) {
+    format_proper_case(frm, "branch_address");
+  },
+
   validate(frm) {
     // Final mobile validation before save
     validate_mobile_on_save(frm, "cell_number");
@@ -444,14 +456,6 @@ frappe.ui.form.on("Employee", {
   },
 });
 
-frappe.ui.form.on("Employee", {
-  bank_name(frm) {
-    if (frm.doc.bank_name) {
-      frm.set_value("bank_name", frm.doc.bank_name.toUpperCase());
-    }
-  },
-});
-
 const BANK_ACCOUNT_RULES = {
   "AMANA BANK": [13],
   "AXIS BANK": [12],
@@ -491,27 +495,37 @@ const BANK_ACCOUNT_RULES = {
   "STANDARD CHARTERED BANK": [11, 12],
   "STATE BANK OF INDIA": [14],
   "UNION BANK": [16],
+  "BANK OF INDIA": [15],
 };
 
 frappe.ui.form.on("Employee", {
+  bank_ac_no(frm) {
+    let ac_no = frm.doc.bank_ac_no;
+
+    if (!ac_no) return;
+
+    const cleaned = ac_no.replace(/\D/g, "");
+
+    if (ac_no !== cleaned) {
+      frm.set_value("bank_ac_no", cleaned);
+    }
+  },
+
   validate(frm) {
     const bank = frm.doc.bank_name;
     let ac_no = frm.doc.bank_ac_no;
 
     if (!bank || !ac_no) return;
 
-    // Normalize input (do NOT block typing)
-    ac_no = ac_no.replace(/[\s-]/g, "");
+    ac_no = ac_no.replace(/\D/g, "");
     frm.doc.bank_ac_no = ac_no;
 
-    // Digits-only check
     if (!/^\d+$/.test(ac_no)) {
       frappe.throw(__("Bank Account Number must contain digits only."));
     }
 
     const rules = BANK_ACCOUNT_RULES[bank.toUpperCase()];
 
-    // If bank not configured, allow save
     if (!rules) return;
 
     if (!rules.includes(ac_no.length)) {

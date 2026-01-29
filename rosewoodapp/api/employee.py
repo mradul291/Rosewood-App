@@ -115,7 +115,12 @@ def global_employee_search(search_text):
         "pan_number",
         "reference_name_for_joining",
         "current_address",
-        "permanent_address"
+        "permanent_address",
+        "ifsc_code",
+        "bank_ac_no",
+        "micr_code",
+        "bank_name",
+        "branch_name"
     ]
 
     conditions = " OR ".join([f"`{field}` LIKE %s" for field in fields])
