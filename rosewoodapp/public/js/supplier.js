@@ -90,13 +90,13 @@ function update_upload_status(frm) {
     frm.fields_dict.gst_certificate_upload_status.$wrapper.html(
       `<div style="color: green; font-weight: 500; font-size: 12px;">
                 ● GST Certificate Uploaded
-            </div>`
+            </div>`,
     );
   } else {
     frm.fields_dict.gst_certificate_upload_status.$wrapper.html(
       `<div style="color: red; font-weight: 500; font-size: 12px;">
                 ● GST Certificate Not Uploaded
-            </div>`
+            </div>`,
     );
   }
 
@@ -105,13 +105,13 @@ function update_upload_status(frm) {
     frm.fields_dict.pan_document_upload_status.$wrapper.html(
       `<div style="color: green; font-weight: 500; font-size: 12px;">
                 ● PAN Document Uploaded
-            </div>`
+            </div>`,
     );
   } else {
     frm.fields_dict.pan_document_upload_status.$wrapper.html(
       `<div style="color: red; font-weight: 500; font-size: 12px;">
                 ● PAN Document Not Uploaded
-            </div>`
+            </div>`,
     );
   }
 
@@ -120,13 +120,13 @@ function update_upload_status(frm) {
     frm.fields_dict.aadhar_upload_status.$wrapper.html(
       `<div style="color: green; font-weight: 500; font-size: 12px;">
                 ● Aadhaar Document Uploaded
-            </div>`
+            </div>`,
     );
   } else {
     frm.fields_dict.aadhar_upload_status.$wrapper.html(
       `<div style="color: red; font-weight: 500; font-size: 12px;">
                 ● Aadhaar Document Not Uploaded
-            </div>`
+            </div>`,
     );
   }
 }
@@ -178,7 +178,7 @@ function check_duplicate_mobile(frm, fieldname) {
         __(
           `This Mobile Number is already used by Supplier:<br><br>
           <b>${sup.supplier_name}</b> (${sup.name})<br><br>
-          Do you want to allow duplicate entry?`
+          Do you want to allow duplicate entry?`,
         ),
         () => {
           // User allowed duplicate → do nothing
@@ -186,7 +186,7 @@ function check_duplicate_mobile(frm, fieldname) {
         () => {
           // User rejected → clear field
           frm.set_value(fieldname, "");
-        }
+        },
       );
     },
   });
@@ -239,5 +239,101 @@ frappe.ui.form.on("Supplier", {
     if (!frm.doc.supplier_current_address) {
       frm.set_value("current_address_text", "");
     }
+  },
+});
+
+// Pan and GST Status Logics
+
+frappe.ui.form.on("Supplier", {
+  pan(frm) {
+    derive_pan_and_gst_status(frm);
+  },
+
+  gstin(frm) {
+    // PAN may get auto-derived from GSTIN here
+    derive_pan_and_gst_status(frm);
+  },
+
+  before_save(frm) {
+    derive_pan_and_gst_status(frm);
+  },
+
+  validate(frm) {
+    derive_pan_and_gst_status(frm);
+  },
+});
+
+function derive_pan_and_gst_status(frm) {
+  if (!frm.doc.pan || frm.doc.pan.length < 4) {
+    clear_derived_fields(frm);
+    return;
+  }
+
+  const pan = frm.doc.pan.toUpperCase();
+  const pan_type_char = pan.charAt(3);
+
+  // ----- PAN HOLDER STATUS -----
+  const pan_holder_map = {
+    P: "Individual Person",
+    C: "Company",
+    F: "Firm/Limited Liability Partnership (LLP)",
+    H: "Hindu Undivided Family (HUF)",
+    T: "Trust",
+    A: "Association of Persons (AOP)",
+    B: "Body of Individuals (BOI)",
+    G: "Government Agency",
+    L: "Local Authority",
+    J: "Artificial Juridicial Person",
+  };
+
+  // ----- GST HOLDER STATUS -----
+  const gst_holder_map = {
+    P: "Proprietorship Firm",
+    C: "Company",
+    F: "Firm/Limited Liability Partnership (LLP)",
+    H: "Hindu Undivided Family (HUF)",
+    T: "Trust",
+    A: "Association of Persons (AOP)",
+    B: "Body of Individuals (BOI)",
+    G: "Government Agency",
+    L: "Local Authority",
+    J: "Artificial Juridicial Person",
+  };
+
+  if (pan_holder_map[pan_type_char]) {
+    frm.set_value("status_of_pan_holder", pan_holder_map[pan_type_char]);
+  } else {
+    frm.set_value("status_of_pan_holder", "");
+  }
+
+  if (gst_holder_map[pan_type_char]) {
+    frm.set_value(
+      "status_of_gst_holder_organization_constitution_of_business",
+      gst_holder_map[pan_type_char],
+    );
+  } else {
+    frm.set_value(
+      "status_of_gst_holder_organization_constitution_of_business",
+      "",
+    );
+  }
+}
+
+function clear_derived_fields(frm) {
+  frm.set_value("status_of_pan_holder", "");
+  frm.set_value(
+    "status_of_gst_holder_organization_constitution_of_business",
+    "",
+  );
+}
+
+frappe.ui.form.on("Supplier", {
+  refresh(frm) {
+    frm.add_custom_button(__("Verify PAN Aadhaar Link"), function () {
+      window.open(
+        "https://eportal.incometax.gov.in/iec/foservices/#/pre-login/link-aadhaar-status",
+        "_blank",
+      );
+    });
   },
 });

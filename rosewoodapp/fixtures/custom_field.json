@@ -280,7 +280,7 @@
     "fieldname": "supplier_category",
     "fieldtype": "Select",
     "label": "Supplier Category",
-    "options": "Supplier\nVendor",
+    "options": "Supplier\nVendor\nIndividual",
     "insert_after": "supplier_name"
   },
   {
@@ -413,5 +413,25 @@
     "fieldtype": "Data",
     "label": "Mobile Number",
     "insert_after": "is_transporter"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-status_of_pan_holder",
+    "dt": "Supplier",
+    "fieldname": "status_of_pan_holder",
+    "fieldtype": "Data",
+    "label": "Status of PAN Holder",
+    "read_only": 1,
+    "insert_after": "pan"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-status_of_gst_holder_organization_constitution_of_business",
+    "dt": "Supplier",
+    "fieldname": "status_of_gst_holder_organization_constitution_of_business",
+    "fieldtype": "Data",
+    "label": "Status of GST Holder Organization/Constitution of Business",
+    "read_only": 1,
+    "insert_after": "gstin"
   }
 ]
