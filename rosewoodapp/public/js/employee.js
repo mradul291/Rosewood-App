@@ -36,6 +36,11 @@ frappe.ui.form.on("Employee", {
     validate_mobile(frm, "spouse_contact_number");
   },
 
+  fathers_mobile_no(frm) {
+    validate_mobile(frm, "fathers_mobile_no");
+    check_duplicate_mobile(frm, "fathers_mobile_no");
+  },
+
   // ------------------------------
   // AADHAR VALIDATION (EXISTING)
   // ------------------------------
@@ -161,6 +166,7 @@ frappe.ui.form.on("Employee", {
     validate_mobile_on_save(frm, "cell_number");
     validate_mobile_on_save(frm, "mobile_no_2");
     validate_mobile_on_save(frm, "spouse_contact_number");
+    validate_mobile_on_save(frm, "fathers_mobile_no");
     update_full_name(frm);
 
     // Final PAN check on save

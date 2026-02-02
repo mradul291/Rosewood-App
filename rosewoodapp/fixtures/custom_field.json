@@ -47,6 +47,15 @@
   },
   {
     "doctype": "Custom Field",
+    "name": "Employee-fathers_mobile_no",
+    "dt": "Employee",
+    "fieldname": "fathers_mobile_no",
+    "fieldtype": "Data",
+    "label": "Father's Mobile No.",
+    "insert_after": "fathers_name"
+  },
+  {
+    "doctype": "Custom Field",
     "name": "Employee-reference_name_for_joining",
     "dt": "Employee",
     "fieldname": "reference_name_for_joining",
@@ -115,7 +124,7 @@
     "fieldname": "alias",
     "fieldtype": "Data",
     "label": "Alias (Nick Name)",
-    "insert_after": "fathers_name"
+    "insert_after": "last_name"
   },
   {
     "doctype": "Custom Field",
@@ -229,6 +238,35 @@
   },
   {
     "doctype": "Custom Field",
+    "name": "Employee-height",
+    "dt": "Employee",
+    "fieldname": "height",
+    "fieldtype": "Float",
+    "label": "Height",
+    "description": "in inches",
+    "insert_after": "marital_status"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-weight",
+    "dt": "Employee",
+    "fieldname": "weight",
+    "fieldtype": "Float",
+    "label": "Weight",
+    "description": "in KGs",
+    "insert_after": "height"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-medical_concerns",
+    "dt": "Employee",
+    "fieldname": "medical_concerns",
+    "fieldtype": "Small Text",
+    "label": "Medical Concerns",
+    "insert_after": "blood_group"
+  },
+  {
+    "doctype": "Custom Field",
     "name": "Supplier-supplier_constitution",
     "dt": "Supplier",
     "label": "Supplier Type (Constitution of Business)",
@@ -280,8 +318,18 @@
     "fieldname": "supplier_category",
     "fieldtype": "Select",
     "label": "Supplier Category",
-    "options": "Supplier\nVendor\nIndividual",
+    "options": "Supplier\nVendor",
     "insert_after": "supplier_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-supplier_sub_category",
+    "dt": "Supplier",
+    "fieldname": "supplier_sub_category",
+    "fieldtype": "Select",
+    "label": "Sub-Category",
+    "options": "Registered\nUn-Registered",
+    "insert_after": "supplier_category"
   },
   {
     "doctype": "Custom Field",
@@ -433,5 +481,70 @@
     "label": "Status of GST Holder Organization/Constitution of Business",
     "read_only": 1,
     "insert_after": "gstin"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-branch_name",
+    "dt": "Supplier",
+    "fieldname": "branch_name",
+    "fieldtype": "Data",
+    "label": "Branch Name",
+    "insert_after": "ifsc_code"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-branch_address",
+    "dt": "Supplier",
+    "fieldname": "branch_address",
+    "fieldtype": "Small Text",
+    "label": "Branch Address",
+    "insert_after": "micr_code"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-bank_doc_attachment",
+    "dt": "Supplier",
+    "fieldname": "bank_doc_attachment",
+    "fieldtype": "Attach",
+    "label": "Attach Passbook / Cancelled Cheque",
+    "insert_after": "branch_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-bank_doc_upload_status",
+    "dt": "Supplier",
+    "fieldname": "bank_doc_upload_status",
+    "fieldtype": "HTML",
+    "label": "Bank Document Upload Status",
+    "insert_after": "bank_doc_attachment"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-main_staff_name",
+    "dt": "Supplier",
+    "fieldname": "main_staff_name",
+    "fieldtype": "Data",
+    "label": "Main Staff Name",
+    "insert_after": "language"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-main_staff_mobile_no",
+    "dt": "Supplier",
+    "fieldname": "main_staff_mobile_no",
+    "fieldtype": "Data",
+    "label": "Main Staff Mobile No.",
+    "options": "Phone",
+    "insert_after": "main_staff_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-main_staff_email_id",
+    "dt": "Supplier",
+    "fieldname": "main_staff_email_id",
+    "fieldtype": "Data",
+    "label": "Main Staff Email ID",
+    "options": "Email",
+    "insert_after": "main_staff_mobile_no"
   }
 ]

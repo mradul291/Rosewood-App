@@ -1,4 +1,5 @@
 import frappe
+import requests
 
 @frappe.whitelist()
 def sync_supplier_bank_account(doc, method):
@@ -170,3 +171,45 @@ def check_duplicate_mobile(mobile, current_supplier=None):
         }
 
     return {"duplicate": False}
+
+@frappe.whitelist()
+def fetch_ifsc_details(ifsc_code):
+	if not ifsc_code:
+		return {}
+
+	url = f"https://ifsc.razorpay.com/{ifsc_code}"
+
+	try:
+		response = requests.get(url, timeout=10)
+
+		if response.status_code != 200:
+			frappe.throw("Invalid IFSC Code")
+
+		data = response.json()
+
+		address_parts = [
+			data.get("BRANCH"),
+			data.get("ADDRESS"),
+			data.get("CITY") or data.get("DISTRICT"),
+			data.get("STATE"),
+			"India"
+		]
+
+		clean_address = []
+		for part in address_parts:
+			if part and part not in clean_address:
+				clean_address.append(part.strip())
+
+		return {
+			"bank_name": data.get("BANK"),
+			"branch_name": data.get("BRANCH"),
+			"branch_address": ", ".join(clean_address),
+			"micr_code": data.get("MICR")
+		}
+
+	except frappe.ValidationError:
+		raise
+
+	except Exception:
+		frappe.log_error(frappe.get_traceback(), "IFSC Fetch Failed")
+		frappe.throw("Unable to fetch bank details")

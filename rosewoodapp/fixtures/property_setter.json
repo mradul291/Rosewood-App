@@ -97,5 +97,16 @@
     "property_type": "Check",
     "value": "1",
     "module": "Rosewoodapp"
+  },
+  {
+    "doctype": "Property Setter",
+    "name": "Supplier-defaults_section-label",
+    "doctype_or_field": "DocField",
+    "doc_type": "Supplier",
+    "field_name": "defaults_section",
+    "property": "label",
+    "property_type": "Data",
+    "value": "Bank Details",
+    "module": "Rosewoodapp"
   }
 ]

@@ -48,9 +48,30 @@ frappe.ui.form.on("Supplier", {
     format_proper_case(frm, "alias");
   },
 
+  bank_name(frm) {
+    format_proper_case(frm, "bank_name");
+  },
+
+  branch_name(frm) {
+    format_proper_case(frm, "branch_name");
+  },
+
+  branch_address(frm) {
+    format_proper_case(frm, "branch_address");
+  },
+
+  main_staff_name(frm) {
+    format_proper_case(frm, "main_staff_name");
+  },
+
   mobile_number(frm) {
     validate_mobile(frm, "mobile_number");
     check_duplicate_mobile(frm, "mobile_number");
+  },
+
+  main_staff_mobile_no(frm) {
+    validate_mobile(frm, "main_staff_mobile_no");
+    check_duplicate_mobile(frm, "main_staff_mobile_no");
   },
 
   validate(frm) {
@@ -127,6 +148,21 @@ function update_upload_status(frm) {
       `<div style="color: red; font-weight: 500; font-size: 12px;">
                 ● Aadhaar Document Not Uploaded
             </div>`,
+    );
+  }
+
+  // Bank Document Upload Status
+  if (frm.doc.bank_doc_attachment) {
+    frm.fields_dict.bank_doc_upload_status.$wrapper.html(
+      `<div style="color: green; font-weight: 500; font-size: 12px;">
+			● Bank Document Uploaded
+		</div>`,
+    );
+  } else {
+    frm.fields_dict.bank_doc_upload_status.$wrapper.html(
+      `<div style="color: red; font-weight: 500; font-size: 12px;">
+			● Bank Document Not Uploaded
+		</div>`,
     );
   }
 }
@@ -335,5 +371,156 @@ frappe.ui.form.on("Supplier", {
         "_blank",
       );
     });
+  },
+});
+
+frappe.ui.form.on("Supplier", {
+  refresh(frm) {
+    sync_gst_rules(frm);
+  },
+
+  supplier_sub_category(frm) {
+    sync_gst_rules(frm);
+  },
+
+  gstin(frm) {
+    if (frm.doc.gstin) {
+      frm.set_value("supplier_sub_category", "Registered");
+    }
+    sync_gst_rules(frm);
+  },
+});
+
+function sync_gst_rules(frm) {
+  const gst_fields = [
+    "gstin",
+    "gst_certificate",
+    "status_of_gst_holder_organization_constitution_of_business",
+  ];
+
+  if (frm.doc.gstin) {
+    frm.set_df_property("supplier_sub_category", "read_only", 1);
+  } else {
+    frm.set_df_property("supplier_sub_category", "read_only", 0);
+  }
+
+  if (frm.doc.supplier_sub_category === "Un-Registered") {
+    gst_fields.forEach((field) => {
+      frm.set_df_property(field, "hidden", 1);
+    });
+
+    if (frm.doc.gstin) {
+      frm.set_value("gstin", "");
+    }
+  } else {
+    gst_fields.forEach((field) => {
+      frm.set_df_property(field, "hidden", 0);
+    });
+  }
+}
+
+frappe.ui.form.on("Supplier", {
+  ifsc_code(frm) {
+    const ifsc = frm.doc.ifsc_code;
+
+    if (!ifsc || !/^[A-Z]{4}0[A-Z0-9]{6}$/i.test(ifsc)) return;
+
+    frappe.call({
+      method: "rosewoodapp.api.supplier.fetch_ifsc_details",
+      args: {
+        ifsc_code: ifsc,
+      },
+      callback(r) {
+        if (!r.message) return;
+
+        frm.set_value("bank_name", r.message.bank_name || "");
+        frm.set_value("branch_name", r.message.branch_name || "");
+        frm.set_value("branch_address", r.message.branch_address || "");
+        frm.set_value("micr_code", r.message.micr_code || "");
+      },
+    });
+  },
+});
+
+const BANK_ACCOUNT_RULES = {
+  "AMANA BANK": [13],
+  "AXIS BANK": [12],
+  "BANK OF CEYLON": [10],
+  "BIMPUTH FINANCE PLC": [14, 15],
+  "CARGILLS BANK": [12],
+  CDB: [18],
+  "CENTRAL FINANCE": [12],
+  CITIBANK: [10],
+  CLC: [11],
+  "COMMERCIAL BANK": [10],
+  "DEUTSCHE BANK": [10],
+  "DFCC BANK": [12],
+  "HABIB BANK": [13],
+  "HATTON NATIONAL BANK": [12],
+  "HDFC BANK": [12],
+  "HNB FINANCE LIMITED": [12],
+  HSBC: [12],
+  "ICICI BANK": [12],
+  "INDIAN BANK": [12],
+  "INDIAN OVERSEAS BANK": [12],
+  "LB FINANCE": [15],
+  LOFC: [11],
+  "LOLC DEVELOPMENT FINANCE PLC": [11],
+  "MCB BANK": [12],
+  "NATIONAL DEVELOPMENT BANK": [12],
+  "NATIONS TRUST BANK": [12],
+  NSB: [12],
+  PABC: [12],
+  "PEOPLE'S BANK": [15],
+  "PUBLIC BANK": [13],
+  "REGIONAL DEVELOPMENT BANK": [12],
+  "SAMPATH BANK": [12],
+  "SDB BANK": [10],
+  "SENKADAGALA FINANCE": [12],
+  "SEYLAN BANK": [15],
+  "STANDARD CHARTERED BANK": [11, 12],
+  "STATE BANK OF INDIA": [14],
+  "UNION BANK": [16],
+  "BANK OF INDIA": [15],
+};
+
+frappe.ui.form.on("Supplier", {
+  bank_account_no(frm) {
+    let ac_no = frm.doc.bank_account_no;
+
+    if (!ac_no) return;
+
+    const cleaned = ac_no.replace(/\D/g, "");
+
+    if (ac_no !== cleaned) {
+      frm.set_value("bank_account_no", cleaned);
+    }
+  },
+
+  validate(frm) {
+    const bank = frm.doc.bank_name;
+    let ac_no = frm.doc.bank_account_no;
+
+    if (!bank || !ac_no) return;
+
+    ac_no = ac_no.replace(/\D/g, "");
+    frm.doc.bank_account_no = ac_no;
+
+    if (!/^\d+$/.test(ac_no)) {
+      frappe.throw(__("Bank Account Number must contain digits only."));
+    }
+
+    const rules = BANK_ACCOUNT_RULES[bank.toUpperCase()];
+    if (!rules) return;
+
+    if (!rules.includes(ac_no.length)) {
+      frappe.throw(
+        __(
+          `Invalid Bank Account Number length for ${bank}. Allowed length(s): ${rules.join(
+            ", ",
+          )} digits.`,
+        ),
+      );
+    }
   },
 });
