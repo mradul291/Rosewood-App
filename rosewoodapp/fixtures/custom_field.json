@@ -546,5 +546,535 @@
     "label": "Main Staff Email ID",
     "options": "Email",
     "insert_after": "main_staff_mobile_no"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-tab_general_identification",
+    "dt": "Asset",
+    "fieldname": "tab_general_identification",
+    "fieldtype": "Tab Break",
+    "label": "General & Identification",
+    "insert_after": "amended_from"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-general_section",
+    "dt": "Asset",
+    "fieldname": "general_section",
+    "fieldtype": "Section Break",
+    "label": "General Details",
+    "insert_after": "tab_general_identification"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-city",
+    "dt": "Asset",
+    "fieldname": "city",
+    "fieldtype": "Data",
+    "label": "City",
+    "insert_after": "general_section"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-state",
+    "dt": "Asset",
+    "fieldname": "state",
+    "fieldtype": "Data",
+    "label": "State",
+    "insert_after": "city"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-column_break_general_1",
+    "dt": "Asset",
+    "fieldname": "column_break_general_1",
+    "fieldtype": "Column Break",
+    "insert_after": "state"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-working_table_size",
+    "dt": "Asset",
+    "fieldname": "working_table_size",
+    "fieldtype": "Data",
+    "label": "Working Table Size",
+    "insert_after": "column_break_general_1"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-make",
+    "dt": "Asset",
+    "fieldname": "make",
+    "fieldtype": "Data",
+    "label": "Make",
+    "insert_after": "working_table_size"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-identification_section",
+    "dt": "Asset",
+    "fieldname": "identification_section",
+    "fieldtype": "Section Break",
+    "label": "Identification Details",
+    "insert_after": "make"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-designation",
+    "dt": "Asset",
+    "fieldname": "designation",
+    "fieldtype": "Data",
+    "label": "Designation",
+    "insert_after": "identification_section"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-model",
+    "dt": "Asset",
+    "fieldname": "model",
+    "fieldtype": "Data",
+    "label": "Model",
+    "insert_after": "designation"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-type",
+    "dt": "Asset",
+    "fieldname": "type",
+    "fieldtype": "Data",
+    "label": "Type",
+    "insert_after": "model"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-ref_no",
+    "dt": "Asset",
+    "fieldname": "ref_no",
+    "fieldtype": "Data",
+    "label": "Reference No.",
+    "insert_after": "type"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-serial_reg_no",
+    "dt": "Asset",
+    "fieldname": "serial_reg_no",
+    "fieldtype": "Data",
+    "label": "Serial / Registration No.",
+    "insert_after": "ref_no"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-compliance_section",
+    "dt": "Asset",
+    "fieldname": "compliance_section",
+    "fieldtype": "Section Break",
+    "label": "Registration & Compliance",
+    "insert_after": "serial_reg_no"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-registration_date",
+    "dt": "Asset",
+    "fieldname": "registration_date",
+    "fieldtype": "Date",
+    "label": "Registration Date",
+    "insert_after": "compliance_section"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-pucc_valid_till",
+    "dt": "Asset",
+    "fieldname": "pucc_valid_till",
+    "fieldtype": "Date",
+    "label": "PUCC Valid Till",
+    "insert_after": "registration_date"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-fitness_valid_till",
+    "dt": "Asset",
+    "fieldname": "fitness_valid_till",
+    "fieldtype": "Date",
+    "label": "Fitness Valid Till",
+    "insert_after": "pucc_valid_till"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-mfg_year",
+    "dt": "Asset",
+    "fieldname": "mfg_year",
+    "fieldtype": "Int",
+    "label": "Manufacturing Year",
+    "insert_after": "fitness_valid_till"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-tab_technical_specs",
+    "dt": "Asset",
+    "fieldname": "tab_technical_specs",
+    "fieldtype": "Tab Break",
+    "label": "Technical & Electrical Specs",
+    "insert_after": "mfg_year"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-technical_section",
+    "dt": "Asset",
+    "fieldname": "technical_section",
+    "fieldtype": "Section Break",
+    "label": "Technical Specifications",
+    "insert_after": "tab_technical_specs"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-max_workpiece_thickness",
+    "dt": "Asset",
+    "fieldname": "max_workpiece_thickness",
+    "fieldtype": "Float",
+    "label": "Max. Workpiece Thickness",
+    "insert_after": "technical_section"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-capacity",
+    "dt": "Asset",
+    "fieldname": "capacity",
+    "fieldtype": "Data",
+    "label": "Capacity",
+    "insert_after": "max_workpiece_thickness"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-chuck_diameter",
+    "dt": "Asset",
+    "fieldname": "chuck_diameter",
+    "fieldtype": "Float",
+    "label": "Chuck Diameter",
+    "insert_after": "capacity"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-max_depth_mm",
+    "dt": "Asset",
+    "fieldname": "max_depth_mm",
+    "fieldtype": "Float",
+    "label": "Max. Depth",
+    "insert_after": "chuck_diameter"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-mm",
+    "dt": "Asset",
+    "fieldname": "mm",
+    "fieldtype": "Data",
+    "label": "MM.",
+    "insert_after": "max_depth_mm"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-electrical_section",
+    "dt": "Asset",
+    "fieldname": "electrical_section",
+    "fieldtype": "Section Break",
+    "label": "Electrical Specifications",
+    "insert_after": "mm"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-rated_voltage",
+    "dt": "Asset",
+    "fieldname": "rated_voltage",
+    "fieldtype": "Int",
+    "label": "Rated Voltage (Volts)",
+    "insert_after": "electrical_section"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-ampere",
+    "dt": "Asset",
+    "fieldname": "ampere",
+    "fieldtype": "Float",
+    "label": "Ampere",
+    "insert_after": "rated_voltage"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-phase",
+    "dt": "Asset",
+    "fieldname": "phase",
+    "fieldtype": "Select",
+    "label": "Phase",
+    "options": "Single\nThree",
+    "insert_after": "ampere"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-motor_power",
+    "dt": "Asset",
+    "fieldname": "motor_power",
+    "fieldtype": "Data",
+    "label": "Motor Power",
+    "insert_after": "phase"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-kw_hp",
+    "dt": "Asset",
+    "fieldname": "kw_hp",
+    "fieldtype": "Data",
+    "label": "(KW / HP)",
+    "insert_after": "motor_power"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-tab_network_documents",
+    "dt": "Asset",
+    "fieldname": "tab_network_documents",
+    "fieldtype": "Tab Break",
+    "label": "Network & Documents",
+    "insert_after": "kw_hp"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-network_section",
+    "dt": "Asset",
+    "fieldname": "network_section",
+    "fieldtype": "Section Break",
+    "label": "Network & Access Details",
+    "insert_after": "tab_network_documents"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-mac_id",
+    "dt": "Asset",
+    "fieldname": "mac_id",
+    "fieldtype": "Data",
+    "label": "MAC ID",
+    "insert_after": "network_section"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-default_ip_address",
+    "dt": "Asset",
+    "fieldname": "default_ip_address",
+    "fieldtype": "Data",
+    "label": "Default IP Address",
+    "insert_after": "mac_id"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-username",
+    "dt": "Asset",
+    "fieldname": "username",
+    "fieldtype": "Data",
+    "label": "Username",
+    "insert_after": "default_ip_address"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-password",
+    "dt": "Asset",
+    "fieldname": "password",
+    "fieldtype": "Password",
+    "label": "Password",
+    "insert_after": "username"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-remarks",
+    "dt": "Asset",
+    "fieldname": "remarks",
+    "fieldtype": "Small Text",
+    "label": "Remarks",
+    "insert_after": "password"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-insurance_valid_till",
+    "dt": "Asset",
+    "fieldname": "insurance_valid_till",
+    "fieldtype": "Date",
+    "label": "Insurance Valid Till",
+    "insert_after": "registration_date"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-owner_name",
+    "dt": "Asset",
+    "fieldname": "owner_name",
+    "fieldtype": "Data",
+    "label": "Owner Name",
+    "insert_after": "insurance_valid_till"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-maft_id",
+    "dt": "Asset",
+    "fieldname": "maft_id",
+    "fieldtype": "Data",
+    "label": "MAFT ID",
+    "insert_after": "capacity"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-execute_standard",
+    "dt": "Asset",
+    "fieldname": "execute_standard",
+    "fieldtype": "Data",
+    "label": "Execute Standard",
+    "insert_after": "maft_id"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-fr",
+    "dt": "Asset",
+    "fieldname": "fr",
+    "fieldtype": "Data",
+    "label": "FR.",
+    "insert_after": "execute_standard"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-cfm",
+    "dt": "Asset",
+    "fieldname": "cfm",
+    "fieldtype": "Float",
+    "label": "CFM",
+    "insert_after": "fr"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-hp",
+    "dt": "Asset",
+    "fieldname": "hp",
+    "fieldtype": "Float",
+    "label": "HP",
+    "insert_after": "cfm"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-max_final_pressure",
+    "dt": "Asset",
+    "fieldname": "max_final_pressure",
+    "fieldtype": "Float",
+    "label": "Max. Final Pressure",
+    "insert_after": "hp"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-rpm_max",
+    "dt": "Asset",
+    "fieldname": "rpm_max",
+    "fieldtype": "Int",
+    "label": "RPM (Max.)",
+    "insert_after": "max_final_pressure"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-class",
+    "dt": "Asset",
+    "fieldname": "class",
+    "fieldtype": "Data",
+    "label": "Class",
+    "insert_after": "rpm_max"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-efficiency",
+    "dt": "Asset",
+    "fieldname": "efficiency",
+    "fieldtype": "Float",
+    "label": "EFF",
+    "insert_after": "ampere"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-power_factor",
+    "dt": "Asset",
+    "fieldname": "power_factor",
+    "fieldtype": "Float",
+    "label": "P.F.",
+    "insert_after": "efficiency"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-rated_frequency_hz",
+    "dt": "Asset",
+    "fieldname": "rated_frequency_hz",
+    "fieldtype": "Int",
+    "label": "Rated Frequency (Hz.)",
+    "insert_after": "power_factor"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-duty",
+    "dt": "Asset",
+    "fieldname": "duty",
+    "fieldtype": "Data",
+    "label": "Duty",
+    "insert_after": "rated_frequency_hz"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-start_capacitor",
+    "dt": "Asset",
+    "fieldname": "start_capacitor",
+    "fieldtype": "Data",
+    "label": "Start Capacitor",
+    "insert_after": "duty"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-run_capacitor",
+    "dt": "Asset",
+    "fieldname": "run_capacitor",
+    "fieldtype": "Data",
+    "label": "Run Capacitor",
+    "insert_after": "start_capacitor"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-rated_input_power_watt",
+    "dt": "Asset",
+    "fieldname": "rated_input_power_watt",
+    "fieldtype": "Int",
+    "label": "Rated Input Power (Watt)",
+    "insert_after": "run_capacitor"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-wireless_password_pin",
+    "dt": "Asset",
+    "fieldname": "wireless_password_pin",
+    "fieldtype": "Password",
+    "label": "Wireless Password / PIN",
+    "insert_after": "password"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Asset-wiring_diagram",
+    "dt": "Asset",
+    "fieldname": "wiring_diagram",
+    "fieldtype": "Attach",
+    "label": "Wiring Diagram",
+    "insert_after": "network_section"
   }
 ]
