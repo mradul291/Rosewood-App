@@ -462,86 +462,69 @@ frappe.ui.form.on("Employee", {
   },
 });
 
-const BANK_ACCOUNT_RULES = {
-  "AMANA BANK": [13],
-  "AXIS BANK": [12],
-  "BANK OF CEYLON": [10],
-  "BIMPUTH FINANCE PLC": [14, 15],
-  "CARGILLS BANK": [12],
-  CDB: [18],
-  "CENTRAL FINANCE": [12],
-  CITIBANK: [10],
-  CLC: [11],
-  "COMMERCIAL BANK": [10],
-  "DEUTSCHE BANK": [10],
-  "DFCC BANK": [12],
-  "HABIB BANK": [13],
-  "HATTON NATIONAL BANK": [12],
-  "HDFC BANK": [12],
-  "HNB FINANCE LIMITED": [12],
-  HSBC: [12],
-  "ICICI BANK": [12],
-  "INDIAN BANK": [12],
-  "INDIAN OVERSEAS BANK": [12],
-  "LB FINANCE": [15],
-  LOFC: [11],
-  "LOLC DEVELOPMENT FINANCE PLC": [11],
-  "MCB BANK": [12],
-  "NATIONAL DEVELOPMENT BANK": [12],
-  "NATIONS TRUST BANK": [12],
-  NSB: [12],
-  PABC: [12],
-  "PEOPLE'S BANK": [15],
-  "PUBLIC BANK": [13],
-  "REGIONAL DEVELOPMENT BANK": [12],
-  "SAMPATH BANK": [12],
-  "SDB BANK": [10],
-  "SENKADAGALA FINANCE": [12],
-  "SEYLAN BANK": [15],
-  "STANDARD CHARTERED BANK": [11, 12],
-  "STATE BANK OF INDIA": [14],
-  "UNION BANK": [16],
-  "BANK OF INDIA": [15],
-};
-
 frappe.ui.form.on("Employee", {
-  bank_ac_no(frm) {
-    let ac_no = frm.doc.bank_ac_no;
-
-    if (!ac_no) return;
-
-    const cleaned = ac_no.replace(/\D/g, "");
-
-    if (ac_no !== cleaned) {
-      frm.set_value("bank_ac_no", cleaned);
-    }
-  },
-
-  validate(frm) {
-    const bank = frm.doc.bank_name;
-    let ac_no = frm.doc.bank_ac_no;
-
-    if (!bank || !ac_no) return;
-
-    ac_no = ac_no.replace(/\D/g, "");
-    frm.doc.bank_ac_no = ac_no;
-
-    if (!/^\d+$/.test(ac_no)) {
-      frappe.throw(__("Bank Account Number must contain digits only."));
-    }
-
-    const rules = BANK_ACCOUNT_RULES[bank.toUpperCase()];
-
-    if (!rules) return;
-
-    if (!rules.includes(ac_no.length)) {
-      frappe.throw(
-        __(
-          `Invalid Bank Account Number length for ${bank}. Allowed length(s): ${rules.join(
-            ", ",
-          )} digits.`,
-        ),
-      );
-    }
+  refresh(frm) {
+    setup_reference_autocomplete(frm);
   },
 });
+
+function setup_reference_autocomplete(frm) {
+  const field = frm.get_field("reference_name_for_joining");
+  if (!field || !field.$input) return;
+
+  // Prevent multiple bindings
+  if (field.$input.data("autocomplete_attached")) return;
+  field.$input.data("autocomplete_attached", true);
+
+  // Attach Awesomplete
+  field.$input[0].awesomplete = new Awesomplete(field.$input[0], {
+    minChars: 1,
+    maxItems: 10,
+    autoFirst: true,
+    list: [],
+  });
+
+  // Input listener
+  field.$input.on("input", function () {
+    const txt = field.$input.val();
+    if (!txt || txt.length < 1) return;
+
+    frappe.call({
+      method: "frappe.desk.search.search_link",
+      args: {
+        doctype: "Employee",
+        txt: txt,
+        page_length: 5,
+      },
+      callback: function (r1) {
+        frappe.call({
+          method: "frappe.desk.search.search_link",
+          args: {
+            doctype: "Supplier",
+            txt: txt,
+            page_length: 5,
+          },
+          callback: function (r2) {
+            const results = [];
+
+            // Employee results
+            if (r1 && r1.message) {
+              r1.message.forEach((d) => {
+                results.push(d.description);
+              });
+            }
+
+            // Supplier results
+            if (r2 && r2.message) {
+              r2.message.forEach((d) => {
+                results.push(d.description);
+              });
+            }
+
+            field.$input[0].awesomplete.list = results;
+          },
+        });
+      },
+    });
+  });
+}
