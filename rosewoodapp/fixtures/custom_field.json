@@ -1076,5 +1076,23 @@
     "fieldtype": "Attach",
     "label": "Wiring Diagram",
     "insert_after": "network_section"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Employee-edit_branch_case",
+    "dt": "Employee",
+    "fieldname": "allow_custom_branch_name_case",
+    "label": "Edit Branch Case",
+    "fieldtype": "Check",
+    "insert_after": "branch_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Supplier-edit_branch_case",
+    "dt": "Supplier",
+    "fieldname": "allow_custom_branch_name_case",
+    "label": "Edit Branch Case",
+    "fieldtype": "Check",
+    "insert_after": "branch_name"
   }
 ]

@@ -53,11 +53,23 @@ frappe.ui.form.on("Supplier", {
   },
 
   branch_name(frm) {
-    format_proper_case(frm, "branch_name");
+    if (!frm.doc.allow_custom_branch_name_case) {
+      format_proper_case(frm, "branch_name");
+    }
   },
 
   branch_address(frm) {
-    format_proper_case(frm, "branch_address");
+    if (!frm.doc.allow_custom_branch_name_case) {
+      format_proper_case(frm, "branch_address");
+    }
+  },
+
+  allow_custom_branch_name_case(frm) {
+    // Re-apply proper case when unchecked
+    if (!frm.doc.allow_custom_branch_name_case) {
+      format_proper_case(frm, "branch_name");
+      format_proper_case(frm, "branch_address");
+    }
   },
 
   main_staff_name(frm) {
