@@ -1,0 +1,38 @@
+{
+  "charts": [],
+  "content": "[{\"id\":\"i_CXxqOiqO\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Asset MGMT</span>\",\"col\":12}},{\"id\":\"EQPG9p_Oh7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Asset Management\",\"col\":3}}]",
+  "creation": "2026-02-05 12:23:42.756634",
+  "custom_blocks": [],
+  "docstatus": 0,
+  "doctype": "Workspace",
+  "for_user": "",
+  "hide_custom": 0,
+  "icon": "assets",
+  "idx": 0,
+  "indicator_color": "green",
+  "is_hidden": 0,
+  "label": "Asset MGMT",
+  "links": [],
+  "modified": "2026-02-05 12:51:14.308278",
+  "modified_by": "Administrator",
+  "module": "Rosewoodapp",
+  "name": "Asset MGMT",
+  "number_cards": [],
+  "owner": "Administrator",
+  "parent_page": "",
+  "public": 1,
+  "quick_lists": [],
+  "roles": [],
+  "sequence_id": 29.0,
+  "shortcuts": [
+    {
+      "color": "Grey",
+      "doc_view": "List",
+      "label": "Asset Management",
+      "link_to": "Asset Management",
+      "stats_filter": "[]",
+      "type": "DocType"
+    }
+  ],
+  "title": "Asset MGMT"
+}

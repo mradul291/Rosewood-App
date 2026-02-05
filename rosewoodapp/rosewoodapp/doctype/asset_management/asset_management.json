@@ -1,449 +1,481 @@
 {
-  "doctype": "DocType",
-  "name": "Asset Management",
-  "module": "Rosewoodapp",
-  "custom": 1,
-  "allow_rename": 1,
-  "autoname": "format:AST-.#####",
-  "engine": "InnoDB",
-  "index_web_pages_for_search": 1,
-  "grid_page_length": 50,
-  "sort_field": "modified",
-  "sort_order": "DESC",
-  "row_format": "Dynamic",
-
-  "field_order": [
-    "tab_general",
-    "section_location",
-    "location",
-    "column_break_1",
-    "city",
-    "state",
-
-    "section_asset_basic",
-    "item_name",
-    "image",
-    "qty",
-    "working_table_size",
-    "make",
-    "designation",
-    "description",
-
-    "section_identification",
-    "registration_date",
-    "insurance_valid_till",
-    "pucc_valid_till",
-    "fitness_valid_till",
-
-    "owner_name",
-    "type",
-    "model",
-    "ref_no",
-    "serial_reg_no",
-
-    "tab_technical",
-    "section_capacity",
-    "max_workpiece_thickness",
-    "capacity",
-    "chuck_diameter",
-    "max_depth_mm",
-    "cfm",
-    "hp",
-
-    "section_electrical",
-    "max_final_pressure",
-    "motor_power",
-    "rpm_max",
-    "class",
-    "rated_voltage",
-    "amp",
-    "eff",
-    "pf",
-    "rated_frequency",
-    "duty",
-    "phase",
-    "start_capacitor",
-    "run_capacitor",
-    "rated_input_power",
-
-    "tab_network_compliance",
-    "section_network",
-    "mac_id",
-    "maft_id",
-    "default_ip_address",
-    "username",
-    "password",
-    "wireless_password",
-
-    "section_compliance",
-    "execute_standard",
-    "fr",
-    "wiring_diagram",
-    "mfg_year",
-
-    "section_admin",
-    "custodian",
-    "department",
-    "status",
-    "remarks"
-  ],
-
-  "fields": [
-    {
-      "fieldname": "tab_general",
-      "fieldtype": "Tab Break",
-      "label": "General Details"
-    },
-
-    {
-      "fieldname": "section_location",
-      "fieldtype": "Section Break",
-      "label": "Location Details"
-    },
-    {
-      "fieldname": "location",
-      "fieldtype": "Data",
-      "label": "Location"
-    },
-    {
-      "fieldname": "column_break_1",
-      "fieldtype": "Column Break"
-    },
-    {
-      "fieldname": "city",
-      "fieldtype": "Data",
-      "label": "City"
-    },
-    {
-      "fieldname": "state",
-      "fieldtype": "Data",
-      "label": "State"
-    },
-
-    {
-      "fieldname": "section_asset_basic",
-      "fieldtype": "Section Break",
-      "label": "Asset Basic Information"
-    },
-    {
-      "fieldname": "item_name",
-      "fieldtype": "Data",
-      "label": "Item Name"
-    },
-    {
-      "fieldname": "image",
-      "fieldtype": "Attach Image",
-      "label": "Image"
-    },
-    {
-      "fieldname": "qty",
-      "fieldtype": "Int",
-      "label": "Qty"
-    },
-    {
-      "fieldname": "working_table_size",
-      "fieldtype": "Data",
-      "label": "Working Table Size"
-    },
-    {
-      "fieldname": "make",
-      "fieldtype": "Data",
-      "label": "Make"
-    },
-    {
-      "fieldname": "designation",
-      "fieldtype": "Data",
-      "label": "Designation"
-    },
-    {
-      "fieldname": "description",
-      "fieldtype": "Small Text",
-      "label": "Description"
-    },
-
-    {
-      "fieldname": "section_identification",
-      "fieldtype": "Section Break",
-      "label": "Identification & Validity"
-    },
-    {
-      "fieldname": "registration_date",
-      "fieldtype": "Date",
-      "label": "Registration Date"
-    },
-    {
-      "fieldname": "insurance_valid_till",
-      "fieldtype": "Date",
-      "label": "Insurance Valid Till"
-    },
-    {
-      "fieldname": "pucc_valid_till",
-      "fieldtype": "Date",
-      "label": "PUCC Valid Till"
-    },
-    {
-      "fieldname": "fitness_valid_till",
-      "fieldtype": "Date",
-      "label": "Fitness Valid Till"
-    },
-    {
-      "fieldname": "owner_name",
-      "fieldtype": "Data",
-      "label": "Owner Name"
-    },
-    {
-      "fieldname": "type",
-      "fieldtype": "Data",
-      "label": "Type"
-    },
-    {
-      "fieldname": "model",
-      "fieldtype": "Data",
-      "label": "Model"
-    },
-    {
-      "fieldname": "ref_no",
-      "fieldtype": "Data",
-      "label": "Ref. No."
-    },
-    {
-      "fieldname": "serial_reg_no",
-      "fieldtype": "Data",
-      "label": "Serial / Reg. No."
-    },
-
-    {
-      "fieldname": "tab_technical",
-      "fieldtype": "Tab Break",
-      "label": "Technical & Capacity"
-    },
-
-    {
-      "fieldname": "section_capacity",
-      "fieldtype": "Section Break",
-      "label": "Capacity Details"
-    },
-    {
-      "fieldname": "max_workpiece_thickness",
-      "fieldtype": "Data",
-      "label": "Max. Workpiece Thickness"
-    },
-    {
-      "fieldname": "capacity",
-      "fieldtype": "Data",
-      "label": "Capacity"
-    },
-    {
-      "fieldname": "chuck_diameter",
-      "fieldtype": "Data",
-      "label": "Chuck Diameter"
-    },
-    {
-      "fieldname": "max_depth",
-      "fieldtype": "Data",
-      "label": "Max. Depth"
-    },
-    {
-      "fieldname": "max_depth_unit",
-      "fieldtype": "Data",
-      "label": "MM"
-    },
-    {
-      "fieldname": "cfm",
-      "fieldtype": "Data",
-      "label": "CFM"
-    },
-    {
-      "fieldname": "hp",
-      "fieldtype": "Data",
-      "label": "HP"
-    },
-
-    {
-      "fieldname": "section_electrical",
-      "fieldtype": "Section Break",
-      "label": "Electrical Specifications"
-    },
-    {
-      "fieldname": "max_final_pressure",
-      "fieldtype": "Data",
-      "label": "Max. Final Pressure"
-    },
-    {
-      "fieldname": "motor_power",
-      "fieldtype": "Data",
-      "label": "Motor Power (KW/HP)"
-    },
-    {
-      "fieldname": "rpm_max",
-      "fieldtype": "Data",
-      "label": "RPM (Max.)"
-    },
-    {
-      "fieldname": "class",
-      "fieldtype": "Data",
-      "label": "Class"
-    },
-    {
-      "fieldname": "rated_voltage",
-      "fieldtype": "Data",
-      "label": "Rated Voltage (Volts)"
-    },
-    {
-      "fieldname": "amp",
-      "fieldtype": "Data",
-      "label": "Amp"
-    },
-    {
-      "fieldname": "eff",
-      "fieldtype": "Data",
-      "label": "EFF"
-    },
-    {
-      "fieldname": "pf",
-      "fieldtype": "Data",
-      "label": "P.F."
-    },
-    {
-      "fieldname": "rated_frequency",
-      "fieldtype": "Data",
-      "label": "Rated Frequency (Hz)"
-    },
-    {
-      "fieldname": "duty",
-      "fieldtype": "Data",
-      "label": "Duty"
-    },
-    {
-      "fieldname": "phase",
-      "fieldtype": "Data",
-      "label": "Phase"
-    },
-    {
-      "fieldname": "start_capacitor",
-      "fieldtype": "Data",
-      "label": "Start Capacitor"
-    },
-    {
-      "fieldname": "run_capacitor",
-      "fieldtype": "Data",
-      "label": "Run Capacitor"
-    },
-    {
-      "fieldname": "rated_input_power",
-      "fieldtype": "Data",
-      "label": "Rated Input Power (Watt)"
-    },
-
-    {
-      "fieldname": "tab_network_compliance",
-      "fieldtype": "Tab Break",
-      "label": "Network & Compliance"
-    },
-
-    {
-      "fieldname": "section_network",
-      "fieldtype": "Section Break",
-      "label": "Network Details"
-    },
-    {
-      "fieldname": "mac_id",
-      "fieldtype": "Data",
-      "label": "MAC ID"
-    },
-    {
-      "fieldname": "maft_id",
-      "fieldtype": "Data",
-      "label": "MAFT ID"
-    },
-    {
-      "fieldname": "default_ip_address",
-      "fieldtype": "Data",
-      "label": "Default IP Address"
-    },
-    {
-      "fieldname": "username",
-      "fieldtype": "Data",
-      "label": "Username"
-    },
-    {
-      "fieldname": "password",
-      "fieldtype": "Password",
-      "label": "Password"
-    },
-    {
-      "fieldname": "wireless_password",
-      "fieldtype": "Password",
-      "label": "Wireless Password / PIN"
-    },
-
-    {
-      "fieldname": "section_compliance",
-      "fieldtype": "Section Break",
-      "label": "Compliance & Documents"
-    },
-    {
-      "fieldname": "execute_standard",
-      "fieldtype": "Data",
-      "label": "Execute Standard"
-    },
-    {
-      "fieldname": "fr",
-      "fieldtype": "Data",
-      "label": "FR."
-    },
-    {
-      "fieldname": "wiring_diagram",
-      "fieldtype": "Attach",
-      "label": "Wiring Diagram"
-    },
-    {
-      "fieldname": "mfg_year",
-      "fieldtype": "Int",
-      "label": "Mfg. Year"
-    },
-
-    {
-      "fieldname": "section_admin",
-      "fieldtype": "Section Break",
-      "label": "Administration"
-    },
-    {
-      "fieldname": "custodian",
-      "fieldtype": "Data",
-      "label": "Custodian"
-    },
-    {
-      "fieldname": "department",
-      "fieldtype": "Link",
-      "options": "Department",
-      "label": "Department"
-    },
-    {
-      "fieldname": "status",
-      "fieldtype": "Select",
-      "options": "Active\nInactive\nUnder Maintenance",
-      "label": "Status"
-    },
-    {
-      "fieldname": "remarks",
-      "fieldtype": "Small Text",
-      "label": "Remarks"
-    }
-  ],
-
-  "permissions": [
-    {
-      "role": "System Manager",
-      "read": 1,
-      "write": 1,
-      "create": 1,
-      "delete": 1,
-      "report": 1,
-      "export": 1,
-      "email": 1,
-      "print": 1,
-      "share": 1
-    }
-  ]
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "AST-.####",
+ "creation": "2026-02-04 13:15:23.831198",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "tab_general",
+  "section_location",
+  "location",
+  "column_break_1",
+  "city",
+  "state",
+  "section_asset_basic",
+  "item_name",
+  "image",
+  "qty",
+  "working_table_size",
+  "column_break_ohom",
+  "make",
+  "designation",
+  "description",
+  "section_identification",
+  "registration_date",
+  "insurance_valid_till",
+  "pucc_valid_till",
+  "fitness_valid_till",
+  "owner_name",
+  "column_break_xodd",
+  "type",
+  "model",
+  "ref_no",
+  "serial_reg_no",
+  "tab_technical",
+  "section_capacity",
+  "max_workpiece_thickness",
+  "capacity",
+  "chuck_diameter",
+  "cfm",
+  "column_break_agfj",
+  "hp",
+  "max_depth",
+  "max_depth_unit",
+  "section_electrical",
+  "max_final_pressure",
+  "motor_power",
+  "kw_hp",
+  "rpm_max",
+  "class",
+  "rated_voltage",
+  "amp",
+  "eff",
+  "column_break_ggcp",
+  "pf",
+  "rated_frequency",
+  "duty",
+  "phase",
+  "start_capacitor",
+  "run_capacitor",
+  "rated_input_power",
+  "tab_network_compliance",
+  "section_network",
+  "mac_id",
+  "maft_id",
+  "default_ip_address",
+  "column_break_jsvg",
+  "username",
+  "password",
+  "wireless_password",
+  "section_compliance",
+  "execute_standard",
+  "fr",
+  "column_break_jdhq",
+  "wiring_diagram",
+  "mfg_year",
+  "section_admin",
+  "custodian",
+  "department",
+  "status",
+  "column_break_fdkf",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "tab_general",
+   "fieldtype": "Tab Break",
+   "label": "General Details"
+  },
+  {
+   "fieldname": "section_location",
+   "fieldtype": "Section Break",
+   "label": "Location Details"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Location"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "section_asset_basic",
+   "fieldtype": "Section Break",
+   "label": "Asset Basic Information"
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "in_preview": 1,
+   "label": "Image",
+   "options": "image"
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Int",
+   "label": "Qty"
+  },
+  {
+   "fieldname": "working_table_size",
+   "fieldtype": "Data",
+   "label": "Working Table Size"
+  },
+  {
+   "fieldname": "make",
+   "fieldtype": "Data",
+   "label": "Make"
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "section_identification",
+   "fieldtype": "Section Break",
+   "label": "Identification & Validity"
+  },
+  {
+   "fieldname": "registration_date",
+   "fieldtype": "Date",
+   "label": "Registration Date"
+  },
+  {
+   "fieldname": "insurance_valid_till",
+   "fieldtype": "Date",
+   "label": "Insurance Valid Till"
+  },
+  {
+   "fieldname": "pucc_valid_till",
+   "fieldtype": "Date",
+   "label": "PUCC Valid Till"
+  },
+  {
+   "fieldname": "fitness_valid_till",
+   "fieldtype": "Date",
+   "label": "Fitness Valid Till"
+  },
+  {
+   "fieldname": "owner_name",
+   "fieldtype": "Data",
+   "label": "Owner Name"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Data",
+   "label": "Type"
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "label": "Model"
+  },
+  {
+   "fieldname": "ref_no",
+   "fieldtype": "Data",
+   "label": "Ref. No."
+  },
+  {
+   "fieldname": "serial_reg_no",
+   "fieldtype": "Data",
+   "label": "Serial / Reg. No."
+  },
+  {
+   "fieldname": "tab_technical",
+   "fieldtype": "Tab Break",
+   "label": "Technical & Capacity"
+  },
+  {
+   "fieldname": "section_capacity",
+   "fieldtype": "Section Break",
+   "label": "Capacity Details"
+  },
+  {
+   "fieldname": "max_workpiece_thickness",
+   "fieldtype": "Data",
+   "label": "Max. Workpiece Thickness"
+  },
+  {
+   "fieldname": "capacity",
+   "fieldtype": "Data",
+   "label": "Capacity"
+  },
+  {
+   "fieldname": "chuck_diameter",
+   "fieldtype": "Data",
+   "label": "Chuck Diameter"
+  },
+  {
+   "fieldname": "max_depth",
+   "fieldtype": "Data",
+   "label": "Max. Depth"
+  },
+  {
+   "fieldname": "max_depth_unit",
+   "fieldtype": "Data",
+   "label": "MM"
+  },
+  {
+   "fieldname": "cfm",
+   "fieldtype": "Data",
+   "label": "CFM"
+  },
+  {
+   "fieldname": "hp",
+   "fieldtype": "Data",
+   "label": "HP"
+  },
+  {
+   "fieldname": "section_electrical",
+   "fieldtype": "Section Break",
+   "label": "Electrical Specifications"
+  },
+  {
+   "fieldname": "max_final_pressure",
+   "fieldtype": "Data",
+   "label": "Max. Final Pressure"
+  },
+  {
+   "fieldname": "motor_power",
+   "fieldtype": "Data",
+   "label": "Motor Power"
+  },
+  {
+   "fieldname": "rpm_max",
+   "fieldtype": "Data",
+   "label": "RPM (Max.)"
+  },
+  {
+   "fieldname": "class",
+   "fieldtype": "Data",
+   "label": "Class"
+  },
+  {
+   "fieldname": "rated_voltage",
+   "fieldtype": "Data",
+   "label": "Rated Voltage (Volts)"
+  },
+  {
+   "fieldname": "amp",
+   "fieldtype": "Data",
+   "label": "Amp"
+  },
+  {
+   "fieldname": "eff",
+   "fieldtype": "Data",
+   "label": "EFF"
+  },
+  {
+   "fieldname": "pf",
+   "fieldtype": "Data",
+   "label": "P.F."
+  },
+  {
+   "fieldname": "rated_frequency",
+   "fieldtype": "Data",
+   "label": "Rated Frequency (Hz)"
+  },
+  {
+   "fieldname": "duty",
+   "fieldtype": "Data",
+   "label": "Duty"
+  },
+  {
+   "fieldname": "phase",
+   "fieldtype": "Data",
+   "label": "Phase"
+  },
+  {
+   "fieldname": "start_capacitor",
+   "fieldtype": "Data",
+   "label": "Start Capacitor"
+  },
+  {
+   "fieldname": "run_capacitor",
+   "fieldtype": "Data",
+   "label": "Run Capacitor"
+  },
+  {
+   "fieldname": "rated_input_power",
+   "fieldtype": "Data",
+   "label": "Rated Input Power (Watt)"
+  },
+  {
+   "fieldname": "tab_network_compliance",
+   "fieldtype": "Tab Break",
+   "label": "Network & Compliance"
+  },
+  {
+   "fieldname": "section_network",
+   "fieldtype": "Section Break",
+   "label": "Network Details"
+  },
+  {
+   "fieldname": "mac_id",
+   "fieldtype": "Data",
+   "label": "MAC ID"
+  },
+  {
+   "fieldname": "maft_id",
+   "fieldtype": "Data",
+   "label": "MAFT ID"
+  },
+  {
+   "fieldname": "default_ip_address",
+   "fieldtype": "Data",
+   "label": "Default IP Address"
+  },
+  {
+   "fieldname": "username",
+   "fieldtype": "Data",
+   "label": "Username"
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Password",
+   "label": "Password"
+  },
+  {
+   "fieldname": "wireless_password",
+   "fieldtype": "Password",
+   "label": "Wireless Password / PIN"
+  },
+  {
+   "fieldname": "section_compliance",
+   "fieldtype": "Section Break",
+   "label": "Compliance & Documents"
+  },
+  {
+   "fieldname": "execute_standard",
+   "fieldtype": "Data",
+   "label": "Execute Standard"
+  },
+  {
+   "fieldname": "fr",
+   "fieldtype": "Data",
+   "label": "FR."
+  },
+  {
+   "fieldname": "wiring_diagram",
+   "fieldtype": "Data",
+   "label": "Wiring Diagram"
+  },
+  {
+   "fieldname": "mfg_year",
+   "fieldtype": "Int",
+   "label": "Mfg. Year"
+  },
+  {
+   "fieldname": "section_admin",
+   "fieldtype": "Section Break",
+   "label": "Administration"
+  },
+  {
+   "fieldname": "custodian",
+   "fieldtype": "Data",
+   "label": "Custodian"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nNon-Active"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "column_break_ohom",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_xodd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_agfj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "kw_hp",
+   "fieldtype": "Data",
+   "label": "KW/HP"
+  },
+  {
+   "fieldname": "column_break_ggcp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_jsvg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_jdhq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_fdkf",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "image_field": "image",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-02-05 12:48:12.143783",
+ "modified_by": "Administrator",
+ "module": "Rosewoodapp",
+ "name": "Asset Management",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
 }
