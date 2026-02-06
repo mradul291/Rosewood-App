@@ -35,6 +35,11 @@ frappe.listview_settings["Supplier"] = {
 
             if (r.message && r.message.length) {
               listview.filter_area.add([["Supplier", "name", "in", r.message]]);
+            } else {
+              // Force empty list if no match found
+              listview.filter_area.add([
+                ["Supplier", "name", "=", "Not Found"],
+              ]);
             }
 
             listview.refresh();
