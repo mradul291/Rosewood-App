@@ -1,13 +1,13 @@
-frappe.ui.form.on("Employment Rules and Conduct", {
-	refresh(frm) {
+frappe.listview_settings["Employment Rules and Conduct"] = {
+	onload(listview) {
 		const route = frappe.get_route_str();
 
 		frappe.breadcrumbs.all[route] = {
 			workspace: "HR",
-			doctype: frm.doctype,
-			type: "Form",
+			doctype: listview.doctype,
+			type: "List",
 		};
 
 		frappe.breadcrumbs.update();
 	},
-});
+};

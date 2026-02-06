@@ -1,8 +1,13 @@
-// Copyright (c) 2026, Chirag Joshi and contributors
-// For license information, please see license.txt
+frappe.ui.form.on("Asset Management", {
+	refresh(frm) {
+		const route = frappe.get_route_str();
 
-// frappe.ui.form.on("Asset Management", {
-// 	refresh(frm) {
+		frappe.breadcrumbs.all[route] = {
+			workspace: "Asset MGMT",
+			doctype: frm.doctype,
+			type: "Form",
+		};
 
-// 	},
-// });
+		frappe.breadcrumbs.update();
+	},
+});
