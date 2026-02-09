@@ -8,12 +8,14 @@
  "field_order": [
   "basic_information_section",
   "posting_date",
+  "to_date",
   "column_break_zcpz",
   "posting_time",
   "section_break_urvs",
   "entry_control_column",
   "entry_type",
   "expense_category",
+  "person_name",
   "column_break_gmem",
   "payment_mode",
   "site",
@@ -43,7 +45,7 @@
   },
   {
    "fieldname": "posting_time",
-   "fieldtype": "Datetime",
+   "fieldtype": "Time",
    "label": "Time"
   },
   {
@@ -133,8 +135,7 @@
    "fieldname": "entry_by",
    "fieldtype": "Link",
    "label": "Entry By",
-   "options": "User",
-   "read_only": 1
+   "options": "User"
   },
   {
    "fieldname": "column_break_adud",
@@ -150,12 +151,24 @@
    "fieldname": "entry_person",
    "fieldtype": "Data",
    "label": "Entry Person"
+  },
+  {
+   "fieldname": "person_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Person Name"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "hidden": 1,
+   "label": "To Date"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-01-16 11:33:03.669609",
+ "modified": "2026-02-09 12:38:44.645090",
  "modified_by": "Administrator",
  "module": "Rosewoodapp",
  "name": "Expense Entry",

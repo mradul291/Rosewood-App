@@ -6,6 +6,9 @@ frappe.ui.form.on("Expense Entry", {
 		if (!frm.doc.posting_date) {
 			frm.set_value("posting_date", frappe.datetime.get_today());
 		}
+		if (!frm.doc.to_date) {
+			frm.set_value("to_date", frappe.datetime.get_today());
+		}
 
 		if (!frm.doc.posting_time) {
 			frm.set_value("posting_time", frappe.datetime.now_datetime());
@@ -49,6 +52,7 @@ function apply_category_filter(frm) {
 			filters: {
 				entry_type: frm.doc.entry_type,
 				is_active: 1,
+				parent_category: ["is", "not set"], // ONLY base categories
 			},
 		};
 	});
@@ -79,21 +83,34 @@ frappe.ui.form.on("Expense Entry", {
 // -------------------------------
 // Auto balance calculation
 // -------------------------------
+// frappe.ui.form.on("Expense Entry", {
+// 	before_save(frm) {
+// 		return frappe.db
+// 			.get_list("Expense Entry", {
+// 				fields: ["balance"],
+// 				order_by: "posting_date desc, posting_time desc",
+// 				limit: 1,
+// 			})
+// 			.then((res) => {
+// 				let previous_balance = res.length ? res[0].balance : 0;
+// 				let current_balance =
+// 					previous_balance + (frm.doc.cash_in || 0) - (frm.doc.cash_out || 0);
+
+// 				frm.set_value("balance", current_balance);
+// 			});
+// 	},
+// });
+
+// -------------------------------
+// Entry-wise balance calculation
+// -------------------------------
 frappe.ui.form.on("Expense Entry", {
 	before_save(frm) {
-		return frappe.db
-			.get_list("Expense Entry", {
-				fields: ["balance"],
-				order_by: "posting_date desc, posting_time desc",
-				limit: 1,
-			})
-			.then((res) => {
-				let previous_balance = res.length ? res[0].balance : 0;
-				let current_balance =
-					previous_balance + (frm.doc.cash_in || 0) - (frm.doc.cash_out || 0);
+		let cash_in = frm.doc.cash_in || 0;
+		let cash_out = frm.doc.cash_out || 0;
 
-				frm.set_value("balance", current_balance);
-			});
+		// Entry-level balance only
+		frm.set_value("balance", cash_in - cash_out);
 	},
 });
 
@@ -122,5 +139,59 @@ frappe.ui.form.on("Expense Entry", {
 frappe.ui.form.on("Expense Entry", {
 	refresh(frm) {
 		frm.set_df_property("balance", "read_only", 1);
+	},
+});
+
+// -------------------------------
+// Expense Category
+// ------------------------------
+
+let selected_person_name = null;
+
+frappe.ui.form.on("Expense Entry", {
+	expense_category(frm) {
+		if (!frm.doc.expense_category) return;
+
+		selected_person_name = null;
+
+		frappe.db
+			.get_value("Expense Category", frm.doc.expense_category, [
+				"requires_person",
+				"parent_category",
+			])
+			.then((r) => {
+				if (r.message?.requires_person && !r.message.parent_category) {
+					frappe.prompt(
+						{
+							label: "Person Name",
+							fieldname: "person",
+							fieldtype: "Data",
+							reqd: 1,
+						},
+						(data) => {
+							selected_person_name = data.person.trim();
+						},
+					);
+				}
+			});
+	},
+});
+
+frappe.ui.form.on("Expense Entry", {
+	before_save(frm) {
+		if (!selected_person_name) return;
+
+		return frappe
+			.call({
+				method: "rosewoodapp.api.expense.get_or_create_person_category",
+				args: {
+					base_category: frm.doc.expense_category,
+					person_name: selected_person_name,
+					entry_type: frm.doc.entry_type,
+				},
+			})
+			.then((r) => {
+				frm.set_value("expense_category", r.message);
+			});
 	},
 });

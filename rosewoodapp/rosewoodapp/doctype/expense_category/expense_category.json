@@ -8,9 +8,10 @@
  "field_order": [
   "category_name",
   "entry_type",
+  "parent_category",
   "column_break_kjve",
-  "requires_person",
-  "is_active"
+  "is_active",
+  "requires_person"
  ],
  "fields": [
   {
@@ -26,12 +27,6 @@
    "options": "\nOpening Balance\nInward\nOutward"
   },
   {
-   "default": "0",
-   "fieldname": "requires_person",
-   "fieldtype": "Check",
-   "label": "Requires Person"
-  },
-  {
    "default": "1",
    "fieldname": "is_active",
    "fieldtype": "Check",
@@ -40,12 +35,24 @@
   {
    "fieldname": "column_break_kjve",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "parent_category",
+   "fieldtype": "Link",
+   "label": "Parent Category",
+   "options": "Expense Category"
+  },
+  {
+   "default": "0",
+   "fieldname": "requires_person",
+   "fieldtype": "Check",
+   "label": "Requires Person"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-01-15 11:19:04.855525",
+ "modified": "2026-02-09 11:07:40.711704",
  "modified_by": "Administrator",
  "module": "Rosewoodapp",
  "name": "Expense Category",

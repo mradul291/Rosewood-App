@@ -95,8 +95,9 @@
   },
   {
    "fieldname": "location",
-   "fieldtype": "Data",
-   "label": "Location"
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Asset Location"
   },
   {
    "fieldname": "column_break_1",
@@ -454,7 +455,7 @@
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-02-05 12:48:12.143783",
+ "modified": "2026-02-09 12:50:44.434947",
  "modified_by": "Administrator",
  "module": "Rosewoodapp",
  "name": "Asset Management",
@@ -477,5 +478,14 @@
  "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Green",
+   "title": "Active"
+  },
+  {
+   "color": "Red",
+   "title": "Non-Active"
+  }
+ ]
 }

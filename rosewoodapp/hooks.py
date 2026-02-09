@@ -35,7 +35,10 @@ doc_events = {
     "Supplier": {
         "after_insert": "rosewoodapp.api.supplier.sync_supplier_bank_account",
         "on_update": "rosewoodapp.api.supplier.sync_supplier_bank_account"
-    }
+    },
+    "Asset Management": {
+		"before_save": "rosewoodapp.api.asset_management.create_item_and_asset"
+	}
 }
 
 permission_query_conditions = {

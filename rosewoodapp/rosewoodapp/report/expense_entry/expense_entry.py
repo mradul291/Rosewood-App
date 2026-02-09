@@ -17,7 +17,7 @@ def execute(filters=None):
 def get_columns():
     return [
         {"label": "Date", "fieldname": "posting_date", "fieldtype": "Date", "width": 100},
-        {"label": "Time", "fieldname": "posting_time", "fieldtype": "Datetime", "width": 120},
+        {"label": "Time", "fieldname": "posting_time", "fieldtype": "Time", "width": 120},
         {"label": "Entry Type", "fieldname": "entry_type", "fieldtype": "Data", "width": 120},
         {"label": "Category", "fieldname": "expense_category", "fieldtype": "Data", "width": 160},
         {"label": "Payment Mode", "fieldname": "payment_mode", "fieldtype": "Data", "width": 120},
@@ -36,7 +36,11 @@ def get_data(filters):
     values = {}
 
     # Date range (MANDATORY)
-    conditions.append("posting_date BETWEEN %(from_date)s AND %(to_date)s")
+    conditions.append("""
+	posting_date >= %(from_date)s
+	AND to_date <= %(to_date)s
+""")
+
     values["from_date"] = filters.get("from_date")
     values["to_date"] = filters.get("to_date")
 
