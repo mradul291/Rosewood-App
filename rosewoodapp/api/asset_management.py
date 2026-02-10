@@ -68,35 +68,6 @@ def global_asset_search(search_text):
     data = frappe.db.sql(query, values, as_dict=True)
     return [d.name for d in data]
 
-# def create_item_for_asset(doc, method):
-# 	if not doc.item_name:
-# 		return
-
-# 	item_code = doc.item_name.strip()
-
-# 	# 1. Check if Item already exists
-# 	if frappe.db.exists("Item", item_code):
-# 		return
-
-# 	# 2. Create Item safely
-# 	item = frappe.get_doc({
-# 		"doctype": "Item",
-# 		"item_code": item_code,
-# 		"item_name": item_code,
-# 		"item_group": "Products",
-# 		"stock_uom": "Nos",
-# 		"asset_category": "Products",
-# 		"is_stock_item": 0,  # Assets are usually non-stock
-#       "is_fixed_asset": 1,
-# 	})
-
-# 	# 3. Insert without GST/HSN validation blocking
-# 	item.flags.ignore_mandatory = True
-# 	item.flags.ignore_validate = True
-# 	item.insert(ignore_permissions=True)
-
-# 	frappe.db.commit()
-
 def create_item_and_asset(doc, method):
 	if not doc.item_name:
 		return
