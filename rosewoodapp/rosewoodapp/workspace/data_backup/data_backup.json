@@ -1,0 +1,37 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"KoEnmUgwJf\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Data Backup</span>\",\"col\":12}},{\"id\":\"b7Ceo3G_pO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Download Backup\",\"col\":3}}]",
+ "creation": "2026-02-11 13:07:57.791125",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "project-1",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Data Backup",
+ "links": [],
+ "modified": "2026-02-11 13:08:46.958474",
+ "modified_by": "Administrator",
+ "module": "Rosewoodapp",
+ "name": "Data Backup",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 30.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Download Backup",
+   "link_to": "backups",
+   "type": "Page"
+  }
+ ],
+ "title": "Data Backup"
+}
