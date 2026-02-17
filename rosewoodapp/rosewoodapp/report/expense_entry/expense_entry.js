@@ -52,6 +52,10 @@ frappe.query_reports["Expense Entry"] = {
 	onload(report) {
 		// Apply initial category filter (in case entry_type already has value)
 		set_category_filter(report);
+		//  Add Clear Button
+		report.page.add_inner_button(__("Clear Filters"), function () {
+			clear_all_filters(report);
+		});
 	},
 
 	on_change(report) {
@@ -82,4 +86,21 @@ function set_category_filter(report) {
 	if (!entry_type) {
 		report.set_filter_value("expense_category", "");
 	}
+}
+
+// -------------------------------
+// Clear All Filters Function
+// -------------------------------
+function clear_all_filters(report) {
+	// Loop through all filters
+	report.filters.forEach((filter) => {
+		report.set_filter_value(filter.df.fieldname, "");
+	});
+
+	// Optional: Restore default dates
+	report.set_filter_value("from_date", frappe.datetime.month_start());
+	report.set_filter_value("to_date", frappe.datetime.month_end());
+
+	// Refresh report
+	report.refresh();
 }

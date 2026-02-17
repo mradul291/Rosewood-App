@@ -16,6 +16,13 @@ def execute(filters=None):
 
 def get_columns():
     return [
+        {
+            "label": "ID",
+            "fieldname": "name",
+            "fieldtype": "Link",
+            "options": "Expense Entry",
+            "width": 160
+        },
         {"label": "Date", "fieldname": "posting_date", "fieldtype": "Date", "width": 100},
         {"label": "Time", "fieldname": "posting_time", "fieldtype": "Time", "width": 120},
         {"label": "Entry Type", "fieldname": "entry_type", "fieldtype": "Data", "width": 120},
@@ -69,6 +76,7 @@ def get_data(filters):
 
     query = f"""
         SELECT
+            name,
             posting_date,
             posting_time,
             entry_type,
