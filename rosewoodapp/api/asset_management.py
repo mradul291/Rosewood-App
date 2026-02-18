@@ -7,7 +7,7 @@ def global_asset_search(search_text):
 
     search_text = f"%{search_text}%"
 
-    # ONLY fields that actually contain searchable data
+    # ONLY fields that actually contain searchable data hi
     fields = [
         "location",
         "city",
