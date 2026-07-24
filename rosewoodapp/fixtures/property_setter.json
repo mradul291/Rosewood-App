@@ -108,5 +108,26 @@
     "property_type": "Data",
     "value": "Bank Details",
     "module": "Rosewoodapp"
+  },
+  {
+    "doctype": "Property Setter",
+    "name": "Timesheet Detail-from_time-hidden",
+    "doctype_or_field": "DocField",
+    "doc_type": "Timesheet Detail",
+    "field_name": "from_time",
+    "property": "hidden",
+    "property_type": "Check",
+    "value": "0"
+  },
+  {
+    "doctype": "Property Setter",
+    "name": "Timesheet Detail-to_time-hidden",
+    "doctype_or_field": "DocField",
+    "doc_type": "Timesheet Detail",
+    "field_name": "to_time",
+    "property": "hidden",
+    "property_type": "Check",
+    "value": "0"
   }
+
 ]

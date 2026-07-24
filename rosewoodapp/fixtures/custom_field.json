@@ -1865,5 +1865,37 @@
     "fieldname": "trade_name",
     "fieldtype": "Data",
     "insert_after": "supplier_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Timesheet Detail-start_time",
+    "dt": "Timesheet Detail",
+    "fieldname": "start_time",
+    "label": "From Time",
+    "fieldtype": "Time",
+    "insert_before": "from_time",
+    "in_list_view": 1,
+    "reqd": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Timesheet Detail-end_time",
+    "dt": "Timesheet Detail",
+    "fieldname": "end_time",
+    "label": "To Time",
+    "fieldtype": "Time",
+    "insert_before": "to_time",
+    "in_list_view": 1,
+    "reqd": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Timesheet Detail-duration_display",
+    "dt": "Timesheet Detail",
+    "fieldname": "duration_display",
+    "label": "Duration",
+    "fieldtype": "Data",
+    "in_list_view": 1,
+    "insert_after": "end_time"
   }
 ]

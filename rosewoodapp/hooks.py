@@ -5,17 +5,68 @@ app_description = "Rosewood app for Erpnext customization"
 app_email = "chirag.joshi@vigisolvo.com"
 app_license = "mit"
 
+# hooks.py
+
+
 
 fixtures = [
     {"dt": "Custom Field", "filters": [["module", "=", "Rosewoodapp"]]},
     {"dt": "Property Setter", "filters": [["module", "=", "Rosewoodapp"]]},
+    {
+        "dt": "Custom Field",
+        "filters": [
+            [
+                "dt",
+                "=",
+                "Timesheet Detail"
+            ],
+            [
+                "fieldname",
+                "in",
+                [
+                    "work_date",
+                    "start_time",
+                    "end_time",
+                    "duration_display"
+                ]
+            ]
+        ]
+    },
+    {
+        "dt": "Property Setter",
+        "filters": [
+            [
+                "doc_type",
+                "=",
+                "Timesheet Detail"
+            ],
+            [
+                "field_name",
+                "in",
+                [
+                    "from_time",
+                    "to_time"
+                ]
+            ],
+            [
+                "property",
+                "=",
+                "hidden"
+            ]
+        ]
+    }
 ]
+    
+
+
+
 
 doctype_js = {
     "Employee": "public/js/employee.js",
     "Supplier": "public/js/supplier.js",
     "Address": "public/js/address.js",
     "Contact": "public/js/contact.js",
+    "Timesheet": "public/js/timesheet.js"
 }
 
 doctype_list_js = {
@@ -38,7 +89,7 @@ doc_events = {
     },
     "Asset Management": {
 		"before_save": "rosewoodapp.api.asset_management.create_item_and_asset"
-	}
+	},
 }
 
 permission_query_conditions = {
@@ -49,6 +100,7 @@ has_permission = {
     "Expense Entry": "rosewoodapp.permissions.permission.expense_entry_has_permission"
 }
 
+esbuild_config = "esbuild/esbuild.js"
 
 
 # Apps
